@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:spotify/Library.dart';
 import 'package:spotify/firstscreen.dart';
+import 'package:spotify/signin.dart';
 import 'package:spotify/splash.dart';
+
+import 'login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +37,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SplashScreen2(),
+      home: Library(),
       debugShowCheckedModeBanner: false,
     );
   }

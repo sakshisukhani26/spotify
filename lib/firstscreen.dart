@@ -66,6 +66,8 @@ class _FirstscreenState extends State<Firstscreen> {
                 height:60,
                 width:350,
                 child:
+                    // UiHelper.CustomButton((){}, "https://1000logos.net/wp-content/uploads/2017/02/Facebook-Logosu.png", "Continue with Facebook",
+                    //     25, backgroundcolor, foregroundColor, fontweight, fontsize, horizontal, vertical, width),
                 OutlinedButton(onPressed: (){},child: Row(children:[
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 12),
