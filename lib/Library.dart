@@ -57,6 +57,24 @@ class _LibraryState extends State<Library> {
           Row(
             children: [
               Text("Recently Played",style: TextStyle(color: Colors.white,fontSize: 18),),
+              SizedBox(width: 170,),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.grid_view_outlined,color: Colors.white,),
+                iconSize: 25,
+              ),
+            ],
+          ),
+          SizedBox(height: 10,),
+          Row(
+            children: [
+            IconButton(
+            onPressed: () {},
+            icon:
+            Image.network("https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg",height: 70,width:70,),
+              iconSize: 30,
+            ),
+              TextButton(onPressed: (){}, child: Text("Liked Songs",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),)),
             ],
           )
         ],),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class UiHelper{
-  static CustomButton(VoidCallback callback,String imagePath,String text,double radius,Color backgroundcolor,Color foregroundColor,FontWeight fontweight,double fontsize,double horizontal,double vertical,double width){
+  static CustomButton(VoidCallback callback,String text,double radius,String imagePath,FontWeight fontweight,double fontsize,double width,[Color? backgroundcolor,Color? foregroundColor,double? h,double? v]){
     return OutlinedButton(onPressed:(){callback();} ,
       child:Row(children: [
       Padding(
-      padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 12),
+      padding: const EdgeInsets.symmetric(vertical: 12,horizontal: 15),
         child:
         Image.network(imagePath)),
         SizedBox(width: 20,),
