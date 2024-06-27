@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spotify/UiHelper.dart';
+import 'package:spotify/login.dart';
+import 'package:spotify/signin.dart';
 
 class Firstscreen extends StatefulWidget {
   const Firstscreen({super.key});
@@ -31,7 +33,7 @@ class _FirstscreenState extends State<Firstscreen> {
                 height:60,
                 width:350,
                 child:
-                ElevatedButton(onPressed:(){} , child: Text("Sign up free",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                ElevatedButton(onPressed:(){  Navigator.push(context, MaterialPageRoute(builder: (context)=>Signin()));} , child: Text("Sign up free",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                   style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25)
                 ),backgroundColor: Colors.greenAccent.shade400,foregroundColor: Colors.black),),
@@ -105,7 +107,7 @@ class _FirstscreenState extends State<Firstscreen> {
               height:40,),
             Center(
               child: TextButton(child:Text("Log in",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25)),
-              onPressed: (){},),
+              onPressed: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));},),
               ),
           ]),
       backgroundColor: Colors.black,

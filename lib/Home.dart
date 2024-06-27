@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotify/Library.dart';
 import 'package:spotify/UiHelper.dart';
 
 class Home extends StatefulWidget {
@@ -108,31 +109,6 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(onPressed: (){}, icon: Column(
-                    children: [
-                      Icon(Icons.home,color: Colors.grey,),
-                      UiHelper.customText("Home", Colors.grey, 10),
-                    ],
-                  ),iconSize: 40,),
-                  SizedBox(width: 35,),
-                  IconButton(onPressed: (){}, icon: Column(
-                    children: [
-                      Icon(Icons.library_music_outlined,color: Colors.grey,),
-                      UiHelper.customText("Library", Colors.grey, 10),
-                    ],
-                  ),iconSize: 40),
-                  SizedBox(width: 35,),
-                  IconButton(onPressed: (){}, icon: Column(
-                    children: [
-                      Icon(Icons.person,color: Colors.grey,),
-                      UiHelper.customText("Profile", Colors.grey, 10),
-                    ],
-                  ),iconSize: 40),
-                ],
-              )
             ],
           ),
         ),

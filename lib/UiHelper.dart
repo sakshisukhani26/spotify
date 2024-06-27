@@ -33,4 +33,16 @@ class UiHelper{
   static customText(String text,Color color,double fontsize,[FontWeight? fontweight]){
     return Text(text,style: TextStyle(fontSize: fontsize, color: color,fontWeight: fontweight),);
   }
+  static CustomAlertBox(BuildContext context,String text){
+    return showDialog(context: context, builder: (context){
+      return AlertDialog(
+        title: Text(text),
+        actions: [
+          TextButton(onPressed: (){
+            Navigator.pop(context);
+          }, child: Text("ok"))
+        ],
+      );
+    });
+  }
 }

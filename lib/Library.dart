@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:spotify/Account.dart';
+import 'package:spotify/Home.dart';
+import 'package:spotify/UiHelper.dart';
 
 class Library extends StatefulWidget {
   const Library({super.key});
@@ -76,7 +79,38 @@ class _LibraryState extends State<Library> {
             ),
               TextButton(onPressed: (){}, child: Text("Liked Songs",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),)),
             ],
-          )
+          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     IconButton(onPressed: (){
+          //       Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
+          //     }, icon: Column(
+          //       children: [
+          //         Icon(Icons.home,color: Colors.grey,),
+          //         UiHelper.customText("Home", Colors.grey, 10),
+          //       ],
+          //     ),iconSize: 40,),
+          //     SizedBox(width: 35,),
+          //     IconButton(onPressed: (){
+          //       Navigator.push(context, MaterialPageRoute(builder: (context)=>Library()));
+          //     }, icon: Column(
+          //       children: [
+          //         Icon(Icons.library_music_outlined,color: Colors.grey,),
+          //         UiHelper.customText("Library", Colors.grey, 10),
+          //       ],
+          //     ),iconSize: 40),
+          //     SizedBox(width: 35,),
+          //     IconButton(onPressed: (){
+          //       // Navigator.push(context, MaterialPageRoute(builder: (context)=>));
+          //     }, icon: Column(
+          //       children: [
+          //         Icon(Icons.person,color: Colors.grey,),
+          //         UiHelper.customText("Profile", Colors.grey, 10),
+          //       ],
+          //     ),iconSize: 40),
+          //   ],
+          // ),
         ],),
       ),
           backgroundColor: Colors.black,
