@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:spotify/Account.dart';
 import 'package:spotify/Home.dart';
 import 'package:spotify/Library.dart';
+import 'package:spotify/Settings.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -17,7 +18,7 @@ class _NavigationbarState extends State<NavBar> {
   final List<Widget> _screens = [
     Home(),
     Library(),
-    Account(),
+    Settings(),
   ];
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +49,7 @@ class _NavigationbarState extends State<NavBar> {
           ],
           backgroundColor: Colors.black,
         ),
+
     );
   }
 }
