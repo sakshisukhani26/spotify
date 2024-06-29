@@ -16,14 +16,14 @@ class _LibraryState extends State<Library> {
     return Scaffold(
       body:
       Padding(
-        padding: const EdgeInsets.symmetric(vertical: 40,horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 60,horizontal: 20),
         child: Column(children: [
           Row(
             children: [
-              CircleAvatar(child: Image.network("https://cdni.iconscout.com/illustration/premium/thumb/woman-profile-8187680-6590622.png?f=webp",fit: BoxFit.cover,),radius: 25,),
-              SizedBox(width: 20,),
+              // CircleAvatar(child: Image.network("https://cdni.iconscout.com/illustration/premium/thumb/woman-profile-8187680-6590622.png?f=webp",fit: BoxFit.cover,),radius: 25,),
+              // SizedBox(width: 20,),
               Text("Your Library",style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold),),
-              SizedBox(width: 40,),
+              SizedBox(width: 70,),
               IconButton(
                 onPressed: () {},
                 icon: const Icon(Icons.search,color: Colors.white,),
@@ -31,7 +31,46 @@ class _LibraryState extends State<Library> {
               ),
               // SizedBox(width: 10,),
               IconButton(
-                onPressed: () {},
+                onPressed: () {showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
+                  return Container(
+                    height: 250,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(16.0),
+                        topRight: Radius.circular(16.0),
+                      ),
+                      color: Color(0xff232f34),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Text("Create playlist",style: TextStyle(color: Colors.white,fontSize: 30),),
+                          SizedBox(height: 30,),
+                          TextField(
+                            style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                            labelText: "Enter your playlist name",
+                              labelStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                              ),
+                              focusColor: Colors.white,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                          ),
+
+                          ),
+                          SizedBox(height: 30,),
+                          ElevatedButton(onPressed:(){  } , child: Text("Create",style: TextStyle(fontSize: 18),),
+                            style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)
+                            ),backgroundColor: Colors.white,foregroundColor: Colors.black),),                        ],
+                      ),
+                    ),
+                  );
+                });},
                 icon: const Icon(Icons.add,color: Colors.white,),
                 iconSize: 35,
               ),
@@ -60,7 +99,7 @@ class _LibraryState extends State<Library> {
           Row(
             children: [
               Text("Recently Played",style: TextStyle(color: Colors.white,fontSize: 18),),
-              SizedBox(width: 170,),
+              SizedBox(width: 140,),
               IconButton(
                 onPressed: () {},
                 icon: const Icon(Icons.grid_view_outlined,color: Colors.white,),
@@ -80,6 +119,7 @@ class _LibraryState extends State<Library> {
               TextButton(onPressed: (){}, child: Text("Liked Songs",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),)),
             ],
           ),
+
           // Row(
           //   mainAxisAlignment: MainAxisAlignment.center,
           //   children: [

@@ -27,13 +27,14 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: NavBar(),
+      home: SplashScreen2(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+
   const MyHomePage({super.key, required this.title});
 
   // This widget is the home page of your application. It is stateful, meaning

@@ -29,7 +29,7 @@ class _HomeState extends State<Home> {
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 60,horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

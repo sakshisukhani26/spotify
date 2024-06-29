@@ -19,7 +19,10 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text("Settings",style: TextStyle(color: Colors.white),)),
+        title:Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 80),
+          child: Text("Settings",style: TextStyle(color: Colors.white),),
+        ),
         backgroundColor: Colors.grey.shade900,
       ),
       body:
@@ -29,6 +32,44 @@ class _SettingsState extends State<Settings> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 10),
+              //   child: Row(
+              //     children: [
+              //       CircleAvatar(child: Icon(Icons.person),),
+              //       SizedBox(width: 20,),
+              //       Column(
+              //         children: [
+              //           Text("Accountname",style: TextStyle(color: Colors.white,fontSize: 25)),
+              //           TextButton(onPressed: (){},child: Text("Edit Profile",style: TextStyle(color: Colors.white,fontSize: 15)),),
+              //         ],
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              SizedBox(
+                height: 100,
+                child: ListView.builder(
+                itemCount: 1,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                      leading: const Icon(Icons.person,size: 40,),
+                      title: Text(
+                            "Accountname",
+                            style: TextStyle(color: Colors.white, fontSize: 25),),
+                    subtitle: Row(
+                      children: [
+                        TextButton(
+                          onPressed: (){},
+                          child: Text(
+                            "Edit profile",
+                            style: TextStyle(color: Colors.white, fontSize: 15),),
+                        ),
+                      ],
+                    ),
+                  );
+                }),
+              ),
               ExpansionTile(title: Text("Account",style: TextStyle(color: Colors.white,fontSize: 20)),
                 childrenPadding: EdgeInsets.only(left: 40),
                 children: [
