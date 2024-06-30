@@ -9,8 +9,24 @@ class Library extends StatefulWidget {
   @override
   State<Library> createState() => _LibraryState();
 }
-
+var arrContent=[];
+List<DynamicWidget> listDynamic=[];
 class _LibraryState extends State<Library> {
+
+
+
+  addDynamic(){
+    listDynamic.add(new DynamicWidget());
+    setState((){});
+    arrContent=[{
+      "name":playlist.text.toString(),
+    }];
+    setState(() {
+
+    });
+  }
+
+  TextEditingController playlist=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +64,7 @@ class _LibraryState extends State<Library> {
                           Text("Create playlist",style: TextStyle(color: Colors.white,fontSize: 30),),
                           SizedBox(height: 30,),
                           TextField(
+                            controller: playlist,
                             style: TextStyle(color: Colors.white),
                             decoration: InputDecoration(
                             labelText: "Enter your playlist name",
@@ -63,7 +80,7 @@ class _LibraryState extends State<Library> {
 
                           ),
                           SizedBox(height: 30,),
-                          ElevatedButton(onPressed:(){  } , child: Text("Create",style: TextStyle(fontSize: 18),),
+                          ElevatedButton(onPressed:(){ addDynamic(); } , child: Text("Create",style: TextStyle(fontSize: 18),),
                             style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)
                             ),backgroundColor: Colors.white,foregroundColor: Colors.black),),                        ],
@@ -119,7 +136,11 @@ class _LibraryState extends State<Library> {
               TextButton(onPressed: (){}, child: Text("Liked Songs",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),)),
             ],
           ),
-
+          SizedBox(height: 10,),
+          Flexible(child: ListView.builder(
+            itemCount:listDynamic.length,
+              itemBuilder: (_,index)=>listDynamic[index]
+          )),
           // Row(
           //   mainAxisAlignment: MainAxisAlignment.center,
           //   children: [
@@ -156,4 +177,33 @@ class _LibraryState extends State<Library> {
           backgroundColor: Colors.black,
     );
   }
+}
+class DynamicWidget extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child:
+        Row(
+          children: [
+            IconButton(
+              onPressed: () {
+
+              },
+              icon:
+              Image.network("https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg",height: 70,width:70,),
+              iconSize: 30,
+            ),
+            TextButton(onPressed: (){}, child: Text(arrContent[0]["name"].toString(),style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),)),
+            IconButton(
+              onPressed: () {
+
+              },
+              icon:Icon(Icons.delete),
+              iconSize: 30,
+            ),
+          ],
+        ),
+    );
+  }
+
 }

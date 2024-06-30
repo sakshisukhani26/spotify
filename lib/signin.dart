@@ -11,6 +11,7 @@ import 'package:spotify/login.dart';
 class Signin extends StatefulWidget {
   const Signin({super.key});
 
+
   @override
   State<Signin> createState() => _SigninState();
 }
@@ -19,6 +20,8 @@ class _SigninState extends State<Signin> {
   TextEditingController emailController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController pwdController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+  bool passwordVisible=true;
   final format= DateFormat('yyy-mm-dd');
   DateTime date = DateTime.now();
   @override
@@ -43,25 +46,93 @@ class _SigninState extends State<Signin> {
               SizedBox(height: 30,),
               UiHelper.customTextField(nameController, "enter your name", Icons.person,Colors.grey),
               SizedBox(height: 30,),
-              UiHelper.customTextField(pwdController, "enter your password", Icons.visibility,Colors.grey,true),
+              // UiHelper.customTextField(pwdController, "enter your password", Icons.visibility,Colors.grey,true),
+              TextField(
+                controller: pwdController,
+                obscureText: passwordVisible,
+                decoration: InputDecoration(
+                  border: UnderlineInputBorder(),
+                  hintText: "Password",
+                  labelText: "Password",
+                  helperText:"Password must contain special character",
+                  helperStyle:TextStyle(color:Colors.green),
+                  suffixIcon: IconButton(
+                    icon: Icon(passwordVisible
+                        ? Icons.visibility
+                        : Icons.visibility_off),
+                    onPressed: () {
+                      setState(
+                            () {
+                          passwordVisible = !passwordVisible;
+                        },
+                      );
+                    },
+                  ),
+                  alignLabelWithHint: false,
+                  filled: true,
+                ),
+                keyboardType: TextInputType.visiblePassword,
+                textInputAction: TextInputAction.done,
+              ),
               SizedBox(height: 30,),
+              // Container(
+              //   child: Padding(
+              //     padding: const EdgeInsets.symmetric(horizontal: 10),
+              //     child: TextField(
+              //       controller: dateController,
+              //       decoration: InputDecoration(
+              //         labelText: 'DATE',
+              //         filled: true,
+              //         enabledBorder: OutlineInputBorder(
+              //           borderSide: BorderSide.none,
+              //         ),
+              //         focusedBorder: OutlineInputBorder(
+              //           borderSide: BorderSide(color: Colors.blue)
+              //         ),
+              //       ),
+              //       readOnly: true,
+              //       onTap: (){selectDate();},
+              //     ),
+              //   ),
+              // ),
+
+              // Container(
+              //   child: Padding(
+              //     padding: const EdgeInsets.symmetric(horizontal: 10),
+              //     child: DateTimeField(
+              //       onChanged: selectDate(),
+              //       controller: dateController,
+              //       format: format,
+              //       decoration: InputDecoration(
+              //         label: Text("enter your birth date"),
+              //         suffixIcon: Icon(Icons.calendar_today),
+              //       ),
+              //       onShowPicker: (context, currentValue) async{
+              //       final date = showDatePicker(context: context, firstDate: DateTime(1900), lastDate: DateTime(2100));
+              //       },style: TextStyle(backgroundColor: Colors.white)),
+              //   ),
+              //   decoration: BoxDecoration(
+              //     color: Colors.grey.shade300,
+              //     borderRadius: BorderRadius.circular(10)
+              //   ),
+              // ),
               Container(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: DateTimeField(
-                    format: format,
+                  child: TextField(
                     decoration: InputDecoration(
-                      label: Text("enter your birth date"),
-                      suffixIcon: Icon(Icons.calendar_today),
+                              label: Text("enter your birth date"),
+                              suffixIcon: Icon(Icons.calendar_today),
                     ),
-                    onShowPicker: (context, currentValue) async{
-                    final date = showDatePicker(context: context, firstDate: DateTime(1900), lastDate: DateTime(2100));
-                    },style: TextStyle(backgroundColor: Colors.white)),
+                    controller: dateController,
+                    readOnly: true,
+                    onTap: () => onTapFunction(context: context),
+                  ),
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
-                  borderRadius: BorderRadius.circular(10)
-                ),
+                      color: Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(10)
+                    ),
               ),
               SizedBox(height: 60,),
               SizedBox(
@@ -72,7 +143,7 @@ class _SigninState extends State<Signin> {
                     width:350,
                     child:
                     OutlinedButton(onPressed: (){
-                      signup(emailController.text.toString(), pwdController.text.toString(),nameController.text.toString());
+                      signup(emailController.text.toString(), pwdController.text.toString(),nameController.text.toString(),dateController.text.toString());
                       // Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
                       },child:
                     Text("Create account",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.green)),
@@ -97,12 +168,32 @@ class _SigninState extends State<Signin> {
 
     );
   }
-  signup(String email,String password,String name)async{
-    if(email=="" || password==""||name==""){
+  signup(String email,String password,String name,String date)async{
+    final bool emailValid =
+    RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(email);
+    if(email=="" || password==""||name==""||date==""){
       return UiHelper.CustomAlertBox(context, "Enter Required Field's");
     }
     else{
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
+      if(!emailValid)
+      {
+        return UiHelper.CustomAlertBox(context, "Enter Valid Email");
+      }
+      else {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Login()));
+      }
     }
+  }
+  onTapFunction({required BuildContext context}) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      lastDate: DateTime.now(),
+      firstDate: DateTime(2015),
+      initialDate: DateTime.now(),
+    );
+    if (pickedDate == null) return;
+    dateController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
   }
 }

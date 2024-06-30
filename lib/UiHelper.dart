@@ -45,4 +45,5 @@ class UiHelper{
       );
     });
   }
+  static customPwd(){}
 }
