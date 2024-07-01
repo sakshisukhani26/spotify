@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:spotify/login.dart';
+import 'package:spotify/signin.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -187,7 +190,9 @@ class _SettingsState extends State<Settings> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextButton(onPressed: (){}, child: Text("Log out",style: TextStyle(color: Colors.white,fontSize: 20),)),
+                child: TextButton(onPressed: ()async{SharedPreferences preferences = await SharedPreferences.getInstance();
+                await preferences.clear();
+                Navigator.push(context, MaterialPageRoute(builder:(context)=>Signin()));}, child: Text("Log out",style: TextStyle(color: Colors.white,fontSize: 20),)),
               )
             ],),
         ),
