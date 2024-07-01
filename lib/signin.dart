@@ -38,13 +38,14 @@ class _SigninState extends State<Signin> {
                     children: [
                       Image.network("https://play-lh.googleusercontent.com/7ynvVIRdhJNAngCg_GI7i8TtH8BqkJYmffeUHsG-mJOdzt1XLvGmbsKuc5Q1SInBjDKN=w240-h480-rw",height: 80,width: 80,),
                       SizedBox(width: 10,),
-                      Text("Spotify",style: TextStyle(color: Colors.white,fontSize: 40,)),
+                      UiHelper.customText("Spotify",color: Colors.white,fontsize: 40),
+                      // Text("Spotify",style: TextStyle(color: Colors.white,fontSize: 40,)),
                     ],
               ),
               SizedBox(height: 50,),
-              UiHelper.customTextField(emailController, "enter your email", Icons.email,Colors.grey),
+              UiHelper.customTextField(emailController, "enter your email", icondata:Icons.email,focuscolor:Colors.grey),
               SizedBox(height: 30,),
-              UiHelper.customTextField(nameController, "enter your name", Icons.person,Colors.grey),
+              UiHelper.customTextField(nameController, "enter your name", icondata:Icons.person,focuscolor:Colors.grey),
               SizedBox(height: 30,),
               // UiHelper.customTextField(pwdController, "enter your password", Icons.visibility,Colors.grey,true),
               TextField(
@@ -119,7 +120,9 @@ class _SigninState extends State<Signin> {
               Container(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextField(
+                  child:
+                    // UiHelper.customTextField(dateController, "enter your birth date",icondata:Icons.calendar_today, ),
+                  TextField(
                     decoration: InputDecoration(
                               label: Text("enter your birth date"),
                               suffixIcon: Icon(Icons.calendar_today),
@@ -142,23 +145,30 @@ class _SigninState extends State<Signin> {
                     height:60,
                     width:350,
                     child:
-                    OutlinedButton(onPressed: (){
-                      signup(emailController.text.toString(), pwdController.text.toString(),nameController.text.toString(),dateController.text.toString());
-                      // Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
-                      },child:
-                    Text("Create account",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.green)),
-                      style: OutlinedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),side: BorderSide(width: 1.0, color: Colors.green),),
-                    ),
+                        UiHelper.customOutlinebtn(25, 1.0, "Create Account", 20, FontWeight.bold, Colors.green, Colors.green,callback: (){
+                          signup(emailController.text.toString(), pwdController.text.toString(),nameController.text.toString(),dateController.text.toString());
+                          }),
+                    // OutlinedButton(onPressed: (){
+                    //   signup(emailController.text.toString(), pwdController.text.toString(),nameController.text.toString(),dateController.text.toString());
+                    //   // Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
+                    //   },child:
+                    // Text("Create account",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.green)),
+                    //   style: OutlinedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),side: BorderSide(width: 1.0, color: Colors.green),),
+                    // ),
                   ),
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Already have an account?",style: TextStyle(color: Colors.white),),
-                    TextButton(onPressed: (){
+                    UiHelper.customText("Already have an account?",color: Colors.white),
+                    // Text("Already have an account?",style: TextStyle(color: Colors.white),),
+                    UiHelper.customTextButton("Sign in",color: Colors.green,callback:(){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
-                    }, child: Text("Sign in",style: TextStyle(color: Colors.green),))
+                    } ),
+                    // TextButton(onPressed: (){
+                    //   Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
+                    // }, child: Text("Sign in",style: TextStyle(color: Colors.green),))
                   ],
                 ),
             ],

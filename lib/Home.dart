@@ -45,9 +45,8 @@ class _HomeState extends State<Home> {
                 //   ],
                 // ),
                 // TopBar(),
-                UiHelper.customText("Good Morning!", Colors.white, 30),
+                UiHelper.customText("Don't have an account?",color: Colors.white,fontsize: 30),
                 SizedBox(height: 10,),
-
                 TextField(
                   decoration: InputDecoration(
                     labelText: 'Search',
@@ -56,7 +55,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 SizedBox(height: 30,),
-                UiHelper.customText("Top Artist", Colors.white, 20),
+                UiHelper.customText("Top Artist", color:Colors.white,fontsize:  20),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -76,7 +75,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 SizedBox(height: 30,),
-                UiHelper.customText("India's Best", Colors.white, 20),
+                UiHelper.customText("India's Best",  color:Colors.white,fontsize:  20),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -96,7 +95,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 SizedBox(height: 30,),
-                UiHelper.customText("Songs that you may like", Colors.white, 20),
+                UiHelper.customText("Songs that you may like", color:Colors.white,fontsize:  20),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -116,7 +115,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 SizedBox(height: 30,),
-                UiHelper.customText("Top Mixes", Colors.white, 20),
+                UiHelper.customText("Top Mixes",  color:Colors.white,fontsize:  20),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
