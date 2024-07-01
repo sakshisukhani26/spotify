@@ -46,76 +46,15 @@ class _SigninState extends State<Signin> {
               SizedBox(height: 30,),
               UiHelper.customTextField(nameController, "enter your name", Icons.person,Colors.grey),
               SizedBox(height: 30,),
-              // UiHelper.customTextField(pwdController, "enter your password", Icons.visibility,Colors.grey,true),
-              TextField(
-                controller: pwdController,
-                obscureText: passwordVisible,
-                decoration: InputDecoration(
-                  border: UnderlineInputBorder(),
-                  hintText: "Password",
-                  labelText: "Password",
-                  helperText:"Password must contain special character",
-                  helperStyle:TextStyle(color:Colors.green),
-                  suffixIcon: IconButton(
-                    icon: Icon(passwordVisible
-                        ? Icons.visibility
-                        : Icons.visibility_off),
-                    onPressed: () {
-                      setState(
-                            () {
-                          passwordVisible = !passwordVisible;
-                        },
-                      );
-                    },
-                  ),
-                  alignLabelWithHint: false,
-                  filled: true,
-                ),
-                keyboardType: TextInputType.visiblePassword,
-                textInputAction: TextInputAction.done,
-              ),
+              UiHelper.custompwd(pwdController, "enter your password",Colors.grey,"password",passwordVisible,() {
+                setState(
+                      () {
+                    passwordVisible = !passwordVisible;
+                    log(passwordVisible.toString());
+                  },
+                );
+              },),
               SizedBox(height: 30,),
-              // Container(
-              //   child: Padding(
-              //     padding: const EdgeInsets.symmetric(horizontal: 10),
-              //     child: TextField(
-              //       controller: dateController,
-              //       decoration: InputDecoration(
-              //         labelText: 'DATE',
-              //         filled: true,
-              //         enabledBorder: OutlineInputBorder(
-              //           borderSide: BorderSide.none,
-              //         ),
-              //         focusedBorder: OutlineInputBorder(
-              //           borderSide: BorderSide(color: Colors.blue)
-              //         ),
-              //       ),
-              //       readOnly: true,
-              //       onTap: (){selectDate();},
-              //     ),
-              //   ),
-              // ),
-
-              // Container(
-              //   child: Padding(
-              //     padding: const EdgeInsets.symmetric(horizontal: 10),
-              //     child: DateTimeField(
-              //       onChanged: selectDate(),
-              //       controller: dateController,
-              //       format: format,
-              //       decoration: InputDecoration(
-              //         label: Text("enter your birth date"),
-              //         suffixIcon: Icon(Icons.calendar_today),
-              //       ),
-              //       onShowPicker: (context, currentValue) async{
-              //       final date = showDatePicker(context: context, firstDate: DateTime(1900), lastDate: DateTime(2100));
-              //       },style: TextStyle(backgroundColor: Colors.white)),
-              //   ),
-              //   decoration: BoxDecoration(
-              //     color: Colors.grey.shade300,
-              //     borderRadius: BorderRadius.circular(10)
-              //   ),
-              // ),
               Container(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),

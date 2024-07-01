@@ -21,6 +21,7 @@ class _LoginState extends State<Login> {
   TextEditingController pwdController = TextEditingController();
   final format= DateFormat('yyy-mm-dd');
   DateTime date = DateTime.now();
+  bool passwordVisible=true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,8 +35,14 @@ class _LoginState extends State<Login> {
               Center(child: Text("Spotify",style: TextStyle(color: Colors.white,fontSize: 40,))),
               SizedBox(height: 60,),
               UiHelper.customTextField(emailController, "enter your email", Icons.email,Colors.grey),
-              SizedBox(height: 30,),
-              UiHelper.customTextField(pwdController, "enter your password", Icons.visibility,Colors.grey,true),
+              SizedBox(height: 30,),UiHelper.custompwd(pwdController, "enter your password",Colors.grey,"password",passwordVisible,() {
+                setState(
+                      () {
+                    passwordVisible = !passwordVisible;
+                    log(passwordVisible.toString());
+                  },
+                );
+              },),
               Container(
                 alignment: Alignment.bottomRight,
                   child: TextButton(onPressed: (){login(emailController.text.toString(), pwdController.text.toString());}, child: Text("Forgot password?", style: TextStyle(color: Colors.white),))

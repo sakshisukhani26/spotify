@@ -16,13 +16,12 @@ class UiHelper{
           backgroundColor: backgroundcolor,foregroundColor: foregroundColor),
     );
   }
-  static customTextField(TextEditingController controller, String text, IconData icondata,Color color,[bool? password]) {
+  static customTextField(TextEditingController controller, String text, IconData icondata,Color color) {
     return TextField(
       controller: controller,
-      obscureText: password!=null ? password : false,
       decoration: InputDecoration(
           hintText: text,
-          suffixIcon: Icon(icondata),
+          suffixIcon:Icon(icondata),
           filled: true,
           focusColor: Colors.grey,
           border: OutlineInputBorder(
@@ -45,5 +44,23 @@ class UiHelper{
       );
     });
   }
-  static customPwd(){}
+  static custompwd(TextEditingController controller, String text,Color color,[String? params,bool? password,VoidCallback? callback]) {
+    return TextField(
+      controller: controller,
+      obscureText: password!,
+      decoration: InputDecoration(
+          hintText: text,
+          suffixIcon:IconButton(
+            icon: Icon(password
+                ? Icons.visibility_off
+                : Icons.visibility),
+            onPressed: callback,
+          ),
+          filled: true,
+          focusColor: Colors.grey,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          )),
+    );
+  }
 }
