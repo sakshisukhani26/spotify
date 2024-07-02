@@ -9,8 +9,24 @@ class Library extends StatefulWidget {
   @override
   State<Library> createState() => _LibraryState();
 }
-
+var arrContent=[];
+List<DynamicWidget> listDynamic=[];
 class _LibraryState extends State<Library> {
+
+
+
+  addDynamic(){
+    listDynamic.add(new DynamicWidget());
+    setState((){});
+    arrContent=[{
+      "name":playlist.text.toString(),
+    }];
+    setState(() {
+
+    });
+  }
+
+  TextEditingController playlist=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,13 +38,15 @@ class _LibraryState extends State<Library> {
             children: [
               // CircleAvatar(child: Image.network("https://cdni.iconscout.com/illustration/premium/thumb/woman-profile-8187680-6590622.png?f=webp",fit: BoxFit.cover,),radius: 25,),
               // SizedBox(width: 20,),
-              Text("Your Library",style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold),),
+              UiHelper.customText("Your Library",color: Colors.white,fontsize: 25,fontweight: FontWeight.bold),
+              // Text("Your Library",style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold),),
               SizedBox(width: 70,),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.search,color: Colors.white,),
-                iconSize: 35,
-              ),
+              UiHelper.iconBtn(Icons.search, 35, color:Colors.white),
+              // IconButton(
+              //   onPressed: () {},
+              //   icon: const Icon(Icons.search,color: Colors.white,),
+              //   iconSize: 35,
+              // ),
               // SizedBox(width: 10,),
               IconButton(
                 onPressed: () {showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
@@ -45,9 +63,11 @@ class _LibraryState extends State<Library> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                          Text("Create playlist",style: TextStyle(color: Colors.white,fontSize: 30),),
+                          UiHelper.customText("Create playlist",color: Colors.white,fontsize: 30),
+                          // Text("Create playlist",style: TextStyle(color: Colors.white,fontSize: 30),),
                           SizedBox(height: 30,),
                           TextField(
+                            controller: playlist,
                             style: TextStyle(color: Colors.white),
                             decoration: InputDecoration(
                             labelText: "Enter your playlist name",
@@ -63,10 +83,12 @@ class _LibraryState extends State<Library> {
 
                           ),
                           SizedBox(height: 30,),
-                          ElevatedButton(onPressed:(){  } , child: Text("Create",style: TextStyle(fontSize: 18),),
-                            style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)
-                            ),backgroundColor: Colors.white,foregroundColor: Colors.black),),                        ],
+                      UiHelper.customButton("Create",fontsize:  18, borderradius: 20, bgcolor:Colors.white, forecolor:Colors.black,callback:(){ addDynamic(); }),
+                          // ElevatedButton(onPressed:(){ addDynamic(); } , child: Text("Create",style: TextStyle(fontSize: 18),),
+                          //   style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
+                          //       borderRadius: BorderRadius.circular(20)
+                          //   ),backgroundColor: Colors.white,foregroundColor: Colors.black),),
+                        ],
                       ),
                     ),
                   );
@@ -79,47 +101,58 @@ class _LibraryState extends State<Library> {
           SizedBox(height: 20,),
           Row(
             children: [
-              ElevatedButton(onPressed:(){} , child: Text("Playlist",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
-                style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),side: BorderSide(width: 1.0, color: Colors.white),
-                ),backgroundColor: Colors.transparent,foregroundColor: Colors.white),),
+              UiHelper.customButton("Playlist",fontsize:  15, fontweight:FontWeight.bold, borderradius: 25, bgcolor:Colors.transparent, forecolor:Colors.white,side: 1.0,sidecolor: Colors.white),
+              // ElevatedButton(onPressed:(){} , child: Text("Playlist",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+              //   style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(25),side: BorderSide(width: 1.0, color: Colors.white),
+              //   ),backgroundColor: Colors.transparent,foregroundColor: Colors.white),),
               SizedBox(width: 10,),
-              ElevatedButton(onPressed:(){} , child: Text("Artist",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
-                style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25),side: BorderSide(width: 1.0, color: Colors.white),
-                ),backgroundColor: Colors.transparent,foregroundColor: Colors.white),),
+              UiHelper.customButton("Artist",fontsize:  15, fontweight:FontWeight.bold, borderradius: 25, bgcolor:Colors.transparent, forecolor:Colors.white,side: 1.0,sidecolor: Colors.white),
+              // ElevatedButton(onPressed:(){} , child: Text("Artist",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+              //   style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
+              //     borderRadius: BorderRadius.circular(25),side: BorderSide(width: 1.0, color: Colors.white),
+              //   ),backgroundColor: Colors.transparent,foregroundColor: Colors.white),),
               SizedBox(width: 10,),
-              ElevatedButton(onPressed:(){} , child: Text("Albums",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
-                style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25),side: BorderSide(width: 1.0, color: Colors.white),
-                ),backgroundColor: Colors.transparent,foregroundColor: Colors.white),),
+              UiHelper.customButton("Albums",fontsize:  15, fontweight:FontWeight.bold, borderradius: 25, bgcolor:Colors.transparent, forecolor:Colors.white,side: 1.0,sidecolor: Colors.white),
+              // ElevatedButton(onPressed:(){} , child: Text("Albums",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+              //   style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
+              //     borderRadius: BorderRadius.circular(25),side: BorderSide(width: 1.0, color: Colors.white),
+              //   ),backgroundColor: Colors.transparent,foregroundColor: Colors.white),),
             ],
           ),
           SizedBox(height: 20,),
           Row(
             children: [
-              Text("Recently Played",style: TextStyle(color: Colors.white,fontSize: 18),),
+              UiHelper.customText("Recently Played",color: Colors.white,fontsize: 18),
+              // Text("Recently Played",style: TextStyle(color: Colors.white,fontSize: 18),),
               SizedBox(width: 140,),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.grid_view_outlined,color: Colors.white,),
-                iconSize: 25,
-              ),
+              UiHelper.iconBtn(Icons.grid_view_outlined, 25, color:Colors.white),
+              // IconButton(
+              //   onPressed: () {},
+              //   icon: const Icon(Icons.grid_view_outlined,color: Colors.white,),
+              //   iconSize: 25,
+              // ),
             ],
           ),
           SizedBox(height: 10,),
           Row(
             children: [
+              // UiHelper.iconBtn(Image.network("https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg"), 25, Colors.white),
             IconButton(
             onPressed: () {},
             icon:
             Image.network("https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg",height: 70,width:70,),
               iconSize: 30,
             ),
-              TextButton(onPressed: (){}, child: Text("Liked Songs",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),)),
+              UiHelper.customTextButton("Liked Songs",color: Colors.white,fontweight: FontWeight.bold,fontsize: 18),
+              // TextButton(onPressed: (){}, child: Text("Liked Songs",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),)),
             ],
           ),
-
+          SizedBox(height: 10,),
+          Flexible(child: ListView.builder(
+            itemCount:listDynamic.length,
+              itemBuilder: (_,index)=>listDynamic[index]
+          )),
           // Row(
           //   mainAxisAlignment: MainAxisAlignment.center,
           //   children: [
@@ -156,4 +189,35 @@ class _LibraryState extends State<Library> {
           backgroundColor: Colors.black,
     );
   }
+}
+class DynamicWidget extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child:
+        Row(
+          children: [
+            IconButton(
+              onPressed: () {
+
+              },
+              icon:
+              Image.network("https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg",height: 70,width:70,),
+              iconSize: 30,
+            ),
+            UiHelper.customTextButton(arrContent[0]["name"].toString(),color: Colors.white,fontweight: FontWeight.bold,fontsize: 18),
+            // TextButton(onPressed: (){}, child: Text(arrContent[0]["name"].toString(),style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),)),
+            UiHelper.iconBtn(Icons.delete, 30),
+            // IconButton(
+            //   onPressed: () {
+            //
+            //   },
+            //   icon:Icon(Icons.delete),
+            //   iconSize: 30,
+            // ),
+          ],
+        ),
+    );
+  }
+
 }

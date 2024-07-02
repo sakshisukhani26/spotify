@@ -31,14 +31,19 @@ class _LoginState extends State<Login> {
           child: Column(
             children: [
               Image.network("https://play-lh.googleusercontent.com/7ynvVIRdhJNAngCg_GI7i8TtH8BqkJYmffeUHsG-mJOdzt1XLvGmbsKuc5Q1SInBjDKN=w240-h480-rw",height: 120,width: 120,),
-              Center(child: Text("Spotify",style: TextStyle(color: Colors.white,fontSize: 40,))),
+              Center(child:
+              UiHelper.customText("Spotify",color: Colors.white,fontsize: 40),
+              // Text("Spotify",style: TextStyle(color: Colors.white,fontSize: 40,))
+              ),
               SizedBox(height: 60,),
-              UiHelper.customTextField(emailController, "enter your email", Icons.email,Colors.grey),
+              UiHelper.customTextField(emailController, "enter your email", icondata:Icons.email,focuscolor:Colors.grey),
               SizedBox(height: 30,),
-              UiHelper.customTextField(pwdController, "enter your password", Icons.visibility,Colors.grey,true),
+              // UiHelper.customTextField(pwdController, "enter your password", icondata:Icons.visibility,focuscolor:Colors.grey,true),
               Container(
                 alignment: Alignment.bottomRight,
-                  child: TextButton(onPressed: (){login(emailController.text.toString(), pwdController.text.toString());}, child: Text("Forgot password?", style: TextStyle(color: Colors.white),))
+                  child:
+                  UiHelper.customTextButton("Forgot password?",color: Colors.white),
+                  // TextButton(onPressed: (){login(emailController.text.toString(), pwdController.text.toString());}, child: Text("Forgot password?", style: TextStyle(color: Colors.white),))
               ),
               SizedBox(height: 30,),
               SizedBox(
@@ -48,10 +53,11 @@ class _LoginState extends State<Login> {
                     height:60,
                     width:350,
                     child:
-                    ElevatedButton(onPressed:(){ login(emailController.text.toString(), pwdController.text.toString());} , child: Text("Login",style: TextStyle(fontSize: 25),),
-                      style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25)
-                      ),backgroundColor: Colors.greenAccent.shade400,foregroundColor: Colors.black),),
+                    UiHelper.customButton("Login", fontsize: 25,  borderradius: 25, bgcolor:Colors.greenAccent.shade400, forecolor:Colors.black,callback: (){ login(emailController.text.toString(), pwdController.text.toString());}),
+                    // ElevatedButton(onPressed:(){ login(emailController.text.toString(), pwdController.text.toString());} , child: Text("Login",style: TextStyle(fontSize: 25),),
+                    //   style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
+                    //       borderRadius: BorderRadius.circular(25)
+                    //   ),backgroundColor: Colors.greenAccent.shade400,foregroundColor: Colors.black),),
                   ),
                 ),
               ),
@@ -68,8 +74,10 @@ class _LoginState extends State<Login> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Don't have an account?",style: TextStyle(color: Colors.white),),
-                  TextButton(onPressed: (){}, child: Text("Sign up",style: TextStyle(color: Colors.green),))
+                  UiHelper.customText("Don't have an account?",color: Colors.white),
+                  // Text("Don't have an account?",style: TextStyle(color: Colors.white),),
+                  UiHelper.customTextButton("Sign up",color: Colors.green),
+                  // TextButton(onPressed: (){}, child: Text("Sign up",style: TextStyle(color: Colors.green),))
                 ],
               ),
             ],

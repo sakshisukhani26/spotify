@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:spotify/login.dart';
-import 'package:spotify/signin.dart';
+import 'package:spotify/UiHelper.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -24,7 +22,9 @@ class _SettingsState extends State<Settings> {
       appBar: AppBar(
         title:Padding(
           padding: const EdgeInsets.symmetric(horizontal: 80),
-          child: Text("Settings",style: TextStyle(color: Colors.white),),
+          child:
+          UiHelper.customText("Settings",color: Colors.white),
+          // Text("Settings",style: TextStyle(color: Colors.white),),
         ),
         backgroundColor: Colors.grey.shade900,
       ),
@@ -57,9 +57,11 @@ class _SettingsState extends State<Settings> {
                 itemBuilder: (BuildContext context, int index) {
                   return ListTile(
                       leading: const Icon(Icons.person,size: 40,),
-                      title: Text(
-                            "Accountname",
-                            style: TextStyle(color: Colors.white, fontSize: 25),),
+                      title:
+                      UiHelper.customText("Accountname", color: Colors.white, fontsize: 25),
+                      // Text(
+                      //       "Accountname",
+                      //       style: TextStyle(color: Colors.white, fontSize: 25),),
                     subtitle: Row(
                       children: [
                         TextButton(
@@ -73,7 +75,8 @@ class _SettingsState extends State<Settings> {
                   );
                 }),
               ),
-              ExpansionTile(title: Text("Account",style: TextStyle(color: Colors.white,fontSize: 20)),
+              ExpansionTile(title:
+              UiHelper.customText("Account",color: Colors.white,fontsize: 20),
                 childrenPadding: EdgeInsets.only(left: 40),
                 children: [
                   ListTile(
@@ -86,7 +89,9 @@ class _SettingsState extends State<Settings> {
                   )
                 ],
               ),
-              ExpansionTile(title: Text("Content Preference",style: TextStyle(color: Colors.white,fontSize: 20)),
+              ExpansionTile(title:
+              UiHelper.customText("Content Preference",color: Colors.white,fontsize: 20),
+              // Text("Content Preference",style: TextStyle(color: Colors.white,fontSize: 20)),
                 childrenPadding: EdgeInsets.only(left: 40),
                 children: [
                   ListTile(
@@ -106,7 +111,9 @@ class _SettingsState extends State<Settings> {
                   ),
                 ],
               ),
-              ExpansionTile(title: Text("Playback",style: TextStyle(color: Colors.white,fontSize: 20)),
+              ExpansionTile(title:
+              UiHelper.customText("Playback",color: Colors.white,fontsize: 20),
+                // Text("Playback",style: TextStyle(color: Colors.white,fontSize: 20)),
                 childrenPadding: EdgeInsets.only(left: 40),
                 children: [
                   ListTile(
@@ -186,13 +193,15 @@ class _SettingsState extends State<Settings> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextButton(onPressed: (){}, child: Text("About",style: TextStyle(color: Colors.white,fontSize: 20),)),
+                child:
+                  UiHelper.customTextButton("About",color: Colors.white,fontsize: 20),
+                // TextButton(onPressed: (){}, child: Text("About",style: TextStyle(color: Colors.white,fontSize: 20),)),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextButton(onPressed: ()async{SharedPreferences preferences = await SharedPreferences.getInstance();
-                await preferences.clear();
-                Navigator.push(context, MaterialPageRoute(builder:(context)=>Signin()));}, child: Text("Log out",style: TextStyle(color: Colors.white,fontSize: 20),)),
+                child:
+                UiHelper.customTextButton("Log out",color: Colors.white,fontsize: 20),
+                // TextButton(onPressed: (){}, child: Text("Log out",style: TextStyle(color: Colors.white,fontSize: 20),)),
               )
             ],),
         ),
