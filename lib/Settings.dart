@@ -103,7 +103,8 @@ class _SettingsState extends State<Settings> {
                   ListTile(
                     title: Row(
                       children: [
-                        Text("Allow Explicit content",style: TextStyle(color: Colors.white,fontSize: 15)),
+                        UiHelper.customText("Allow Explicit content",color: Colors.white,fontsize: 15),
+                        // Text("Allow Explicit content",style: TextStyle(color: Colors.white,fontSize: 15)),
                         SizedBox(width: 75,),
                         Switch(
                           value: isSwitched,
@@ -125,7 +126,8 @@ class _SettingsState extends State<Settings> {
                   ListTile(
                     title: Row(
                       children: [
-                        Text("Gapless",style: TextStyle(color: Colors.white,fontSize: 15)),
+                        UiHelper.customText("Gapless",color: Colors.white,fontsize: 15),
+                        // Text("Gapless",style: TextStyle(color: Colors.white,fontSize: 15)),
                         SizedBox(width: 170,),
                         Switch(
                           value: isSwitched,
@@ -140,7 +142,7 @@ class _SettingsState extends State<Settings> {
                   ListTile(
                     title: Row(
                       children: [
-                        Text("Automix",style: TextStyle(color: Colors.white,fontSize: 15)),
+                        UiHelper.customText("Automix",color: Colors.white,fontsize: 15),
                         SizedBox(width:170,),
                         Switch(
                           value: isSwitched,
@@ -155,7 +157,8 @@ class _SettingsState extends State<Settings> {
                   ListTile(
                     title: Row(
                       children: [
-                        Text("Show unplayable songs",style: TextStyle(color: Colors.white,fontSize: 15)),
+                        UiHelper.customText("Show unplayable songs",color: Colors.white,fontsize: 15),
+                        // Text("Show unplayable songs",style: TextStyle(color: Colors.white,fontSize: 15)),
                         SizedBox(width: 65,),
                         Switch(
                           value: isSwitched,
@@ -170,7 +173,8 @@ class _SettingsState extends State<Settings> {
                   ListTile(
                     title: Row(
                       children: [
-                        Text("Canvas",style: TextStyle(color: Colors.white,fontSize: 15)),
+                        UiHelper.customText("Canvas",color: Colors.white,fontsize: 15),
+                        // Text("Canvas",style: TextStyle(color: Colors.white,fontSize: 15)),
                         SizedBox(width: 180,),
                         Switch(
                           value: isSwitched,

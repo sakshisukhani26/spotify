@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:spotify/Account.dart';
-import 'package:spotify/Home.dart';
 import 'package:spotify/UiHelper.dart';
 
 class Library extends StatefulWidget {
