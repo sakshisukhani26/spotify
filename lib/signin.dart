@@ -40,9 +40,9 @@ class _SigninState extends State<Signin> {
                     ],
               ),
               SizedBox(height: 50,),
-              UiHelper.customTextField(emailController, "enter your email", icondata:Icons.email,focuscolor:Colors.grey),
+              UiHelper.customTextField(emailController, "enter your email", icondata:Icons.email,focuscolor:Colors.grey,borderradius: 10),
               SizedBox(height: 30,),
-              UiHelper.customTextField(nameController, "enter your name", icondata:Icons.person,focuscolor:Colors.grey),
+              UiHelper.customTextField(nameController, "enter your name", icondata:Icons.person,focuscolor:Colors.grey,borderradius: 10),
               SizedBox(height: 30,),
               UiHelper.custompwd(pwdController, "enter your password",Colors.grey,"password",passwordVisible,() {
                 setState(

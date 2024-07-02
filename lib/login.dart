@@ -33,7 +33,7 @@ class _LoginState extends State<Login> {
               // Text("Spotify",style: TextStyle(color: Colors.white,fontSize: 40,))
               ),
               SizedBox(height: 60,),
-              UiHelper.customTextField(emailController, "enter your email", icondata:Icons.email,focuscolor:Colors.grey),
+              UiHelper.customTextField(emailController, "enter your email", icondata:Icons.email,focuscolor:Colors.grey,borderradius: 10),
               SizedBox(height: 30,),
               UiHelper.custompwd(pwdController, "enter your password",Colors.grey,"password",passwordVisible,() {
                 setState(() {

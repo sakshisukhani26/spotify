@@ -58,7 +58,6 @@ class _FirstscreenState extends State<Firstscreen> {
             Center(
               child: UiHelper.customTextButton("Log in",color:Colors.white,fontweight:FontWeight.bold,fontsize: 25),
             ),
-
             // Center(
             //   child: SizedBox(
             //     height:60,
