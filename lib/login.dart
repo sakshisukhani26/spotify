@@ -1,10 +1,6 @@
 import 'dart:developer';
-
-import 'package:datetime_picker_formfield_new/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:spotify/Account.dart';
-import 'package:spotify/Home.dart';
 import 'package:spotify/UiHelper.dart';
 import 'package:intl/intl.dart';
 import 'package:spotify/navigationBar.dart';
@@ -21,6 +17,7 @@ class _LoginState extends State<Login> {
   TextEditingController pwdController = TextEditingController();
   final format= DateFormat('yyy-mm-dd');
   DateTime date = DateTime.now();
+  bool passwordVisible=true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +35,13 @@ class _LoginState extends State<Login> {
               SizedBox(height: 60,),
               UiHelper.customTextField(emailController, "enter your email", icondata:Icons.email,focuscolor:Colors.grey),
               SizedBox(height: 30,),
-              // UiHelper.customTextField(pwdController, "enter your password", icondata:Icons.visibility,focuscolor:Colors.grey,true),
+              UiHelper.custompwd(pwdController, "enter your password",Colors.grey,"password",passwordVisible,() {
+                setState(() {
+                    passwordVisible = !passwordVisible;
+                    log(passwordVisible.toString());
+                  },
+                );
+              },),
               Container(
                 alignment: Alignment.bottomRight,
                   child:

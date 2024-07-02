@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:spotify/UiHelper.dart';
-import 'package:spotify/login.dart';
-import 'package:spotify/signin.dart';
 
 class Firstscreen extends StatefulWidget {
   const Firstscreen({super.key});
@@ -23,7 +21,6 @@ class _FirstscreenState extends State<Firstscreen> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 60),
-
               child:
                 UiHelper.customText("Millions of songs.\nFree on spotify.",color:Colors.white,fontsize: 30,fontweight: FontWeight.bold,align: TextAlign.center,),
               // Text("Millions of songs.\nFree on spotify.",style: TextStyle(color:Colors.white,fontSize: 30,fontWeight: FontWeight.bold,),textAlign: TextAlign.center,),

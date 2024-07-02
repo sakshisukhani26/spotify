@@ -1,5 +1,3 @@
-import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
-
 import 'package:flutter/material.dart';
 
 class UiHelper{
@@ -21,7 +19,7 @@ class UiHelper{
       width: width,
       child: ElevatedButton(
         onPressed: () {
-          // callback();
+          callback!();
         },
         child: Text(
           text,
@@ -117,60 +115,75 @@ class UiHelper{
         VoidCallback? callback}) {
     return TextButton(
         onPressed: () {
-          // callback();
+          callback!();
         },
         child: Text(text,
             style: TextStyle(
-                color: Colors.white,
+                color: color,
                 fontWeight: fontweight,
                 fontSize: fontsize)));
   }
-  static custompwd(TextEditingController controller, String text, {IconData? icondata,Color? focuscolor,double? borderradius,bool? password,VoidCallback? callback}) {
-    return TextField(
-      controller: controller,
-      obscureText: password!=null ? true : false,
-      decoration: InputDecoration(
-          hintText: text,
-          suffixIcon: Icon(icondata),
-          filled: true,
-          focusColor: focuscolor,
-          border: OutlineInputBorder(
-            borderRadius: borderradius!= null ?BorderRadius.circular(borderradius) : BorderRadius.circular(0.0),
-          )),
+  static expansionTile(String text,Color color,double fontsize,String listText,Color listcolor,double listfontsize,{VoidCallback? callback,double? width,bool? isSwitched,VoidCallback? callbackChange}){
+    return ExpansionTile(title: UiHelper.customText(text,color: color,fontsize: fontsize),
+      childrenPadding: EdgeInsets.only(left: 40),
+      children: [
+        UiHelper.customListTile(listText, listcolor, listfontsize,callback: callback),
+      ],
+    );
+  }
+  static customListTile(String text,Color color,double fontsize,{VoidCallback? callback}){
+    return ListTile(
+        title:
+            UiHelper.customText(text,color: color,fontsize: fontsize),
+        onTap: (){callback!();},
       // onTap: callback,
     );
   }
-  // static expansionTile(String text,Color color,double fontsize,
-  //     {VoidCallback? callback,double? width,bool? isSwitched,VoidCallback? callbackChange}){
-  //   return ExpansionTile(title: UiHelper.customText(text,color: color,fontsize: fontsize),
-  //     childrenPadding: EdgeInsets.only(left: 40),
-  //     children: [
-  //       ListTile(
-  //         title:Row(
-  //             children: [
-  //               UiHelper.customText(text,color: color,fontsize: fontsize),
-  //               UiHelper.customSizebox(width: width),
-  //               Switch(value: isSwitched!,
-  //                   onChanged: callbackChange!,
-  //                     activeTrackColor: Colors.lightGreenAccent,
-  //                     activeColor: Colors.green,
-  //               )
-  //             ],
-  //         )
-  //         // onTap: callback,
-  //       ),
-  //     ],
+  // static customListTile(String text,Color color,double fontsize,{VoidCallback? callback,double? width,bool? isSwitched,VoidCallback? callbackChange}){
+  //   return ListTile(
+  //       title:Row(
+  //         children: [
+  //           UiHelper.customText(text,color: color,fontsize: fontsize),
+  //           UiHelper.customSizebox(width: width),
+  //           Switch(value: isSwitched!,
+  //             onChanged: (bool value){callbackChange!();},
+  //             activeTrackColor: Colors.lightGreenAccent,
+  //             activeColor: Colors.green,
+  //           )
+  //         ],
+  //       )
+  //     // onTap: callback,
   //   );
   // }
-  static iconBtn(IconData icondata,double IconSize,{Color? color,VoidCallbackAction? callback,bool? image,String? imagePath}) {
+  static iconBtn(double IconSize,{Color? color,IconData? icondata,VoidCallback? callback,bool? image,String? imagePath,double? height,double? width}) {
     return IconButton(onPressed: () {
-      callback();
+      callback!();
     },
-      icon: Icon(icondata), iconSize: IconSize,);
+      icon: image==true?Image.network(imagePath!,height: height,width: width,):Icon(icondata!,color: color,),
+      iconSize: IconSize,);
   }
   static customOutlinebtn(double borderradius,double side,String text,double fontsize,FontWeight fontweight,Color color,Color sideColor,{VoidCallback? callback,}){
     return OutlinedButton(onPressed: (){callback!();}, child:
       UiHelper.customText(text,fontsize: fontsize,fontweight: fontweight,color: color),style: OutlinedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderradius)),side: BorderSide(width: side, color: sideColor),),
+    );
+  }
+  static custompwd(TextEditingController controller, String text,Color color,[String? params,bool? password,VoidCallback? callback]) {
+    return TextField(
+      controller: controller,
+      obscureText: password!,
+      decoration: InputDecoration(
+          hintText: text,
+          suffixIcon:IconButton(
+            icon: Icon(password
+                ? Icons.visibility_off
+                : Icons.visibility),
+            onPressed: callback,
+          ),
+          filled: true,
+          focusColor: Colors.grey,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          )),
     );
   }
 }

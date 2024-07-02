@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:spotify/UiHelper.dart';
+import 'package:spotify/signin.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -64,31 +66,35 @@ class _SettingsState extends State<Settings> {
                       //       style: TextStyle(color: Colors.white, fontSize: 25),),
                     subtitle: Row(
                       children: [
-                        TextButton(
-                          onPressed: (){},
-                          child: Text(
-                            "Edit profile",
-                            style: TextStyle(color: Colors.white, fontSize: 15),),
-                        ),
+                        UiHelper.customTextButton("Edit  profile",color: Colors.white, fontsize: 15),
+                        // TextButton(
+                        //   onPressed: (){},
+                        //   child: Text(
+                        //     "Edit profile",
+                        //     style: TextStyle(color: Colors.white, fontSize: 15),),
+                        // ),
                       ],
                     ),
                   );
                 }),
               ),
-              ExpansionTile(title:
-              UiHelper.customText("Account",color: Colors.white,fontsize: 20),
+              // UiHelper.expansionTile("Account",Colors.white, 20,"Free Plan",Colors.white,15),
+              ExpansionTile(title : UiHelper.customText("Account",color: Colors.white,fontsize: 20),
                 childrenPadding: EdgeInsets.only(left: 40),
                 children: [
-                  ListTile(
-                    title: Text("Free Plan",style: TextStyle(color: Colors.white,fontSize: 15)),
-                    onTap: (){},
-                  ),
-                  ListTile(
-                    title: Text("Email",style: TextStyle(color: Colors.white,fontSize: 15)),
-                    onTap: (){},
-                  )
+                  UiHelper.customListTile("Free Plan",Colors.white,15),
+                  // ListTile(
+                  //   title: Text("Free Plan",style: TextStyle(color: Colors.white,fontSize: 15)),
+                  //   onTap: (){},
+                  // ),
+                  UiHelper.customListTile("Email",Colors.white,15),
+                  // ListTile(
+                  //   title: Text("Email",style: TextStyle(color: Colors.white,fontSize: 15)),
+                  //   onTap: (){},
+                  // )
                 ],
               ),
+              // UiHelper.expansionTile("Content Preference",Colors.white,20,"Allow Explicit content", Colors.white, 15,width: 75,isSwitched: isSwitched,callbackChange:() {_toggleSwitch(isSwitched);},),
               ExpansionTile(title:
               UiHelper.customText("Content Preference",color: Colors.white,fontsize: 20),
               // Text("Content Preference",style: TextStyle(color: Colors.white,fontSize: 20)),
@@ -178,17 +184,19 @@ class _SettingsState extends State<Settings> {
                   )
                 ],
               ),
-              ExpansionTile(title: Text("Languages",style: TextStyle(color: Colors.white,fontSize: 20)),
+              ExpansionTile(title:UiHelper.customText("Languages",color: Colors.white,fontsize: 20),
                 childrenPadding: EdgeInsets.only(left: 40),
                 children: [
-                  ListTile(
-                    title: Text("App language",style: TextStyle(color: Colors.white,fontSize: 15)),
-                    onTap: (){},
-                  ),
-                  ListTile(
-                    title: Text("Language for music",style: TextStyle(color: Colors.white,fontSize: 15)),
-                    onTap: (){},
-                  )
+                  UiHelper.customListTile("App language",Colors.white,15),
+                  // ListTile(
+                  //   title: Text("App language",style: TextStyle(color: Colors.white,fontSize: 15)),
+                  //   onTap: (){},
+                  // ),
+                  // ListTile(
+                  //   title: Text("Language for music",style: TextStyle(color: Colors.white,fontSize: 15)),
+                  //   onTap: (){},
+                  // )
+                  UiHelper.customListTile("Language for music",Colors.white,15),
                 ],
               ),
               Padding(
@@ -200,7 +208,9 @@ class _SettingsState extends State<Settings> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child:
-                UiHelper.customTextButton("Log out",color: Colors.white,fontsize: 20),
+                UiHelper.customTextButton("Log out",color: Colors.white,fontsize: 20,callback: ()async{SharedPreferences preferences = await SharedPreferences.getInstance();
+                await preferences.clear();
+                Navigator.push(context, MaterialPageRoute(builder:(context)=>Signin()));}),
                 // TextButton(onPressed: (){}, child: Text("Log out",style: TextStyle(color: Colors.white,fontSize: 20),)),
               )
             ],),

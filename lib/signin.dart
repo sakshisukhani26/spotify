@@ -1,9 +1,6 @@
-import 'package:datetime_picker_formfield_new/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
-import 'package:spotify/Home.dart';
 import 'package:spotify/UiHelper.dart';
 import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:developer';
 
 import 'package:spotify/login.dart';
@@ -47,34 +44,41 @@ class _SigninState extends State<Signin> {
               SizedBox(height: 30,),
               UiHelper.customTextField(nameController, "enter your name", icondata:Icons.person,focuscolor:Colors.grey),
               SizedBox(height: 30,),
-              // UiHelper.customTextField(pwdController, "enter your password", Icons.visibility,Colors.grey,true),
-              TextField(
-                controller: pwdController,
-                obscureText: passwordVisible,
-                decoration: InputDecoration(
-                  border: UnderlineInputBorder(),
-                  hintText: "Password",
-                  labelText: "Password",
-                  helperText:"Password must contain special character",
-                  helperStyle:TextStyle(color:Colors.green),
-                  suffixIcon: IconButton(
-                    icon: Icon(passwordVisible
-                        ? Icons.visibility
-                        : Icons.visibility_off),
-                    onPressed: () {
-                      setState(
-                            () {
-                          passwordVisible = !passwordVisible;
-                        },
-                      );
-                    },
-                  ),
-                  alignLabelWithHint: false,
-                  filled: true,
-                ),
-                keyboardType: TextInputType.visiblePassword,
-                textInputAction: TextInputAction.done,
-              ),
+              UiHelper.custompwd(pwdController, "enter your password",Colors.grey,"password",passwordVisible,() {
+                setState(
+                      () {
+                    passwordVisible = !passwordVisible;
+                    log(passwordVisible.toString());
+                  },
+                );
+              },),
+              // TextField(
+              //   controller: pwdController,
+              //   obscureText: passwordVisible,
+              //   decoration: InputDecoration(
+              //     border: UnderlineInputBorder(),
+              //     hintText: "Password",
+              //     labelText: "Password",
+              //     helperText:"Password must contain special character",
+              //     helperStyle:TextStyle(color:Colors.green),
+              //     suffixIcon: IconButton(
+              //       icon: Icon(passwordVisible
+              //           ? Icons.visibility
+              //           : Icons.visibility_off),
+              //       onPressed: () {
+              //         setState(
+              //               () {
+              //             passwordVisible = !passwordVisible;
+              //           },
+              //         );
+              //       },
+              //     ),
+              //     alignLabelWithHint: false,
+              //     filled: true,
+              //   ),
+              //   keyboardType: TextInputType.visiblePassword,
+              //   textInputAction: TextInputAction.done,
+              // ),
               SizedBox(height: 30,),
               // Container(
               //   child: Padding(

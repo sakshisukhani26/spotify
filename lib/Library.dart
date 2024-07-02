@@ -12,18 +12,13 @@ class Library extends StatefulWidget {
 var arrContent=[];
 List<DynamicWidget> listDynamic=[];
 class _LibraryState extends State<Library> {
-
-
-
   addDynamic(){
     listDynamic.add(new DynamicWidget());
     setState((){});
     arrContent=[{
       "name":playlist.text.toString(),
     }];
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   TextEditingController playlist=TextEditingController();
@@ -41,7 +36,7 @@ class _LibraryState extends State<Library> {
               UiHelper.customText("Your Library",color: Colors.white,fontsize: 25,fontweight: FontWeight.bold),
               // Text("Your Library",style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold),),
               SizedBox(width: 70,),
-              UiHelper.iconBtn(Icons.search, 35, color:Colors.white),
+              UiHelper.iconBtn(icondata:Icons.search, 35, color:Colors.white),
               // IconButton(
               //   onPressed: () {},
               //   icon: const Icon(Icons.search,color: Colors.white,),
@@ -126,7 +121,7 @@ class _LibraryState extends State<Library> {
               UiHelper.customText("Recently Played",color: Colors.white,fontsize: 18),
               // Text("Recently Played",style: TextStyle(color: Colors.white,fontSize: 18),),
               SizedBox(width: 140,),
-              UiHelper.iconBtn(Icons.grid_view_outlined, 25, color:Colors.white),
+              UiHelper.iconBtn(icondata:Icons.grid_view_outlined, 25, color:Colors.white),
               // IconButton(
               //   onPressed: () {},
               //   icon: const Icon(Icons.grid_view_outlined,color: Colors.white,),
@@ -137,13 +132,14 @@ class _LibraryState extends State<Library> {
           SizedBox(height: 10,),
           Row(
             children: [
-              // UiHelper.iconBtn(Image.network("https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg"), 25, Colors.white),
-            IconButton(
-            onPressed: () {},
-            icon:
-            Image.network("https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg",height: 70,width:70,),
-              iconSize: 30,
-            ),
+              UiHelper.iconBtn( 30, color:Colors.white,image: true,imagePath: "https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg",height: 70,width:70),
+            // IconButton(
+            // onPressed: () {},
+            // icon:
+            // Image.network("https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg",height: 70,width:70,),
+            //   iconSize: 30,
+            // ),
+
               UiHelper.customTextButton("Liked Songs",color: Colors.white,fontweight: FontWeight.bold,fontsize: 18),
               // TextButton(onPressed: (){}, child: Text("Liked Songs",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),)),
             ],
@@ -197,17 +193,16 @@ class DynamicWidget extends StatelessWidget{
       child:
         Row(
           children: [
-            IconButton(
-              onPressed: () {
-
-              },
-              icon:
-              Image.network("https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg",height: 70,width:70,),
-              iconSize: 30,
-            ),
+            UiHelper.iconBtn( 30, color:Colors.white,image: true,imagePath: "https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg",height: 70,width:70),
+            // IconButton(
+            //   onPressed: () { },
+            //   icon:
+            //   Image.network("https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg",height: 70,width:70,),
+            //   iconSize: 30,
+            // ),
             UiHelper.customTextButton(arrContent[0]["name"].toString(),color: Colors.white,fontweight: FontWeight.bold,fontsize: 18),
             // TextButton(onPressed: (){}, child: Text(arrContent[0]["name"].toString(),style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),)),
-            UiHelper.iconBtn(Icons.delete, 30),
+            UiHelper.iconBtn(icondata:Icons.delete, 30),
             // IconButton(
             //   onPressed: () {
             //

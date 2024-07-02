@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spotify/Library.dart';
-import 'package:spotify/SideNavBar.dart';
 import 'package:spotify/UiHelper.dart';
-import 'package:flutter_sticky_header/flutter_sticky_header.dart';
-import 'package:spotify/top_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -16,7 +12,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Sidenavbar(),
       body: Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -45,7 +40,7 @@ class _HomeState extends State<Home> {
                 //   ],
                 // ),
                 // TopBar(),
-                UiHelper.customText("Don't have an account?",color: Colors.white,fontsize: 30),
+                UiHelper.customText("Good Morning",color: Colors.white,fontsize: 30),
                 SizedBox(height: 10,),
                 TextField(
                   decoration: InputDecoration(
