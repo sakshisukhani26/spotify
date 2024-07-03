@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:spotify/Home.dart';
-import 'package:spotify/Library.dart';
-import 'package:spotify/Settings.dart';
+import 'package:spotify/Screens/Home/Home.dart';
+import 'package:spotify/Screens/Library/Library.dart';
+import 'package:spotify/Screens/Settings/Settings.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});

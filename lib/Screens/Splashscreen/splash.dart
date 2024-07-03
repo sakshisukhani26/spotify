@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:spotify/Home.dart';
-import 'package:spotify/navigationBar.dart';
-import 'package:spotify/signin.dart';
+import 'package:spotify/Screens/Home/Home.dart';
+import 'package:spotify/Screens/Navbar/navigationBar.dart';
+import 'package:spotify/Screens/Signup/signup.dart';
 
-import 'firstscreen.dart';
+import '../Firstscreen/firstscreen.dart';
 
 class SplashScreen2 extends StatefulWidget{
   const SplashScreen2({super.key});

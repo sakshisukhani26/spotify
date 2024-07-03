@@ -1,9 +1,8 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:spotify/UiHelper.dart';
+import 'package:spotify/Screens/Login/Controllers/LoginController.dart';
+import 'package:spotify/Widgets/UiHelper.dart';
 import 'package:intl/intl.dart';
-import 'package:spotify/navigationBar.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -56,7 +55,7 @@ class _LoginState extends State<Login> {
                     height:60,
                     width:350,
                     child:
-                    UiHelper.customButton("Login", fontsize: 25,  borderradius: 25, bgcolor:Colors.greenAccent.shade400, forecolor:Colors.black,callback: (){ login(emailController.text.toString(), pwdController.text.toString());}),
+                    UiHelper.customButton("Login", fontsize: 25,  borderradius: 25, bgcolor:Colors.greenAccent.shade400, forecolor:Colors.black,callback: (){ LoginController.login(emailController.text.toString(), pwdController.text.toString(),context);}),
                     // ElevatedButton(onPressed:(){ login(emailController.text.toString(), pwdController.text.toString());} , child: Text("Login",style: TextStyle(fontSize: 25),),
                     //   style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
                     //       borderRadius: BorderRadius.circular(25)
@@ -88,16 +87,5 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
-  }
-  login(String email,String password)async{
-    if(email=="" || password==""){
-      return UiHelper.CustomAlertBox(context, "Enter Required Field's");
-    }
-    else{
-      SharedPreferences prefs=await SharedPreferences.getInstance();
-      prefs.setBool("islogin", true);
-      log("Data Added");
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>NavBar()));
-    }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:spotify/UiHelper.dart';
+import 'package:spotify/Screens/Library/Controllers/libraryController.dart';
+import 'package:spotify/Widgets/UiHelper.dart';
 
 class Library extends StatefulWidget {
   const Library({super.key});
@@ -16,7 +17,7 @@ class _LibraryState extends State<Library> {
     arrContent=[{
       "name":playlist.text.toString(),
     }];
-    setState(() {});
+    Navigator.of(context).pop();
   }
 
   TextEditingController playlist=TextEditingController();
@@ -44,46 +45,48 @@ class _LibraryState extends State<Library> {
               IconButton(
                 onPressed: () {showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
                   return Container(
-                    height: 250,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(16.0),
-                        topRight: Radius.circular(16.0),
+                      height: 250,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(16.0),
+                          topRight: Radius.circular(16.0),
+                        ),
+                        color: Color(0xff232f34),
                       ),
-                      color: Color(0xff232f34),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          UiHelper.customText("Create playlist",color: Colors.white,fontsize: 30),
-                          // Text("Create playlist",style: TextStyle(color: Colors.white,fontSize: 30),),
-                          SizedBox(height: 30,),
-                          TextField(
-                            controller: playlist,
-                            style: TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                            labelText: "Enter your playlist name",
-                              labelStyle: TextStyle(
-                                color: Colors.white,
-                                fontSize: 10,
-                              ),
-                              focusColor: Colors.white,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                          ),
-
-                          ),
-                          SizedBox(height: 30,),
-                      UiHelper.customButton("Create",fontsize:  18, borderradius: 20, bgcolor:Colors.white, forecolor:Colors.black,callback:(){ addDynamic(); }),
-                          // ElevatedButton(onPressed:(){ addDynamic(); } , child: Text("Create",style: TextStyle(fontSize: 18),),
-                          //   style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
-                          //       borderRadius: BorderRadius.circular(20)
-                          //   ),backgroundColor: Colors.white,foregroundColor: Colors.black),),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            UiHelper.customText("Create playlist",color: Colors.white,fontsize: 30),
+                            // Text("Create playlist",style: TextStyle(color: Colors.white,fontSize: 30),),
+                            SizedBox(height: 30,),
+                            TextField(
+                              controller: playlist,
+                              style: TextStyle(color: Colors.white),
+                              decoration: InputDecoration(
+                              labelText: "Enter your playlist name",
+                                labelStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                ),
+                                focusColor: Colors.white,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                            ),
+                    
+                            ),
+                            SizedBox(height: 30,),
+                        UiHelper.customButton("Create",fontsize:  18, borderradius: 20, bgcolor:Colors.white, forecolor:Colors.black,callback:(){ addDynamic();
+                          // LibraryController.addDynamic(listDynamic:listDynamic,context:context,playlist:playlist,arrContent:arrContent);
+                        }),
+                            // ElevatedButton(onPressed:(){ addDynamic(); } , child: Text("Create",style: TextStyle(fontSize: 18),),
+                            //   style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
+                            //       borderRadius: BorderRadius.circular(20)
+                            //   ),backgroundColor: Colors.white,foregroundColor: Colors.black),),
+                          ],
+                        ),
                       ),
-                    ),
                   );
                 });},
                 icon: const Icon(Icons.add,color: Colors.white,),
@@ -142,7 +145,6 @@ class _LibraryState extends State<Library> {
               // TextButton(onPressed: (){}, child: Text("Liked Songs",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),)),
             ],
           ),
-          SizedBox(height: 10,),
           Flexible(child: ListView.builder(
             itemCount:listDynamic.length,
               itemBuilder: (_,index)=>listDynamic[index]

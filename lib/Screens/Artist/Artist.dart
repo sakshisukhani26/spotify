@@ -1,5 +1,7 @@
-import 'package:spotify/UiHelper.dart';
+import 'package:spotify/Widgets/UiHelper.dart';
 import 'package:flutter/material.dart';
+
+import '../Albums/Album.dart';
 
 class Artist extends StatefulWidget {
   const Artist({super.key});
@@ -136,7 +138,7 @@ class _ArtistState extends State<Artist> {
                         );
                       });}),
                       SizedBox(width: 10,),
-                      UiHelper.customButton("Albums",fontsize:  15, fontweight:FontWeight.bold, borderradius: 25, bgcolor:Colors.transparent, forecolor:Colors.white,side: 1.0,sidecolor: Colors.white),
+                      UiHelper.customButton("Albums",fontsize:  15, fontweight:FontWeight.bold, borderradius: 25, bgcolor:Colors.transparent, forecolor:Colors.white,side: 1.0,sidecolor: Colors.white,callback:(){Navigator.push(context, MaterialPageRoute(builder: (context)=>Album()));}),
                       // TextButton(onPressed: (){}, child:UiHelper.customText("About", color:Colors.green, 20),),
                       // TextButton(onPressed: (){}, child:UiHelper.customText("Album", Colors.green, 20),),
                       Spacer(),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spotify/UiHelper.dart';
+import 'package:spotify/Widgets/UiHelper.dart';
 
 class Firstscreen extends StatefulWidget {
   const Firstscreen({super.key});

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:spotify/UiHelper.dart';
+import 'package:spotify/Screens/Signup/Controllers/signupController.dart';
+import 'package:spotify/Widgets/UiHelper.dart';
 import 'package:intl/intl.dart';
 import 'dart:developer';
 
-import 'package:spotify/login.dart';
+import 'package:spotify/Screens/Login/login.dart';
 
 class Signin extends StatefulWidget {
   const Signin({super.key});
@@ -133,7 +134,7 @@ class _SigninState extends State<Signin> {
                     ),
                     controller: dateController,
                     readOnly: true,
-                    onTap: () => onTapFunction(context: context),
+                    onTap: () => SignupController.onTapFunction(context: context,dateController:dateController),
                   ),
                 ),
                 decoration: BoxDecoration(
@@ -150,7 +151,7 @@ class _SigninState extends State<Signin> {
                     width:350,
                     child:
                         UiHelper.customOutlinebtn(25, 1.0, "Create Account", 20, FontWeight.bold, Colors.green, Colors.green,callback: (){
-                          signup(emailController.text.toString(), pwdController.text.toString(),nameController.text.toString(),dateController.text.toString());
+                          SignupController.signup(context,emailController.text.toString(), pwdController.text.toString(),nameController.text.toString(),dateController.text.toString());
                           }),
                     // OutlinedButton(onPressed: (){
                     //   signup(emailController.text.toString(), pwdController.text.toString(),nameController.text.toString(),dateController.text.toString());
@@ -162,11 +163,13 @@ class _SigninState extends State<Signin> {
                   ),
                 ),
               ),
+              SizedBox(height: 10,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     UiHelper.customText("Already have an account?",color: Colors.white),
                     // Text("Already have an account?",style: TextStyle(color: Colors.white),),
+
                     UiHelper.customTextButton("Sign in",color: Colors.green,callback:(){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
                     } ),
@@ -182,32 +185,32 @@ class _SigninState extends State<Signin> {
 
     );
   }
-  signup(String email,String password,String name,String date)async{
-    final bool emailValid =
-    RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(email);
-    if(email=="" || password==""||name==""||date==""){
-      return UiHelper.CustomAlertBox(context, "Enter Required Field's");
-    }
-    else{
-      if(!emailValid)
-      {
-        return UiHelper.CustomAlertBox(context, "Enter Valid Email");
-      }
-      else {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Login()));
-      }
-    }
-  }
-  onTapFunction({required BuildContext context}) async {
-    DateTime? pickedDate = await showDatePicker(
-      context: context,
-      lastDate: DateTime.now(),
-      firstDate: DateTime(2015),
-      initialDate: DateTime.now(),
-    );
-    if (pickedDate == null) return;
-    dateController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
-  }
+  // signup(String email,String password,String name,String date)async{
+  //   final bool emailValid =
+  //   RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+  //       .hasMatch(email);
+  //   if(email=="" || password==""||name==""||date==""){
+  //     return UiHelper.CustomAlertBox(context, "Enter Required Field's");
+  //   }
+  //   else{
+  //     if(!emailValid)
+  //     {
+  //       return UiHelper.CustomAlertBox(context, "Enter Valid Email");
+  //     }
+  //     else {
+  //       Navigator.push(
+  //           context, MaterialPageRoute(builder: (context) => Login()));
+  //     }
+  //   }
+  // }
+  // onTapFunction({required BuildContext context}) async {
+  //   DateTime? pickedDate = await showDatePicker(
+  //     context: context,
+  //     lastDate: DateTime.now(),
+  //     firstDate: DateTime(2015),
+  //     initialDate: DateTime.now(),
+  //   );
+  //   if (pickedDate == null) return;
+  //   dateController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
+  // }
 }

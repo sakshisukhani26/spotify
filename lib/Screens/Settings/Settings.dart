@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:spotify/UiHelper.dart';
-import 'package:spotify/signin.dart';
+import 'package:spotify/Widgets/UiHelper.dart';
+import 'package:spotify/Screens/Signup/signup.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
