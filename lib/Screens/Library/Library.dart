@@ -43,52 +43,77 @@ class _LibraryState extends State<Library> {
               // ),
               // SizedBox(width: 10,),
               IconButton(
-                onPressed: () {showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
-                  return Container(
-                      height: 250,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(16.0),
-                          topRight: Radius.circular(16.0),
-                        ),
-                        color: Color(0xff232f34),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                onPressed: (){
+                  showDialog(context: context, builder: (BuildContext context){
+                    return AlertDialog(
+                      backgroundColor: Colors.white.withOpacity(0.9),
+                      title: Text("Create Playlist"),
+                      content: Container(
+                        height: 150,
                         child: Column(
                           children: [
-                            UiHelper.customText("Create playlist",color: Colors.white,fontsize: 30),
-                            // Text("Create playlist",style: TextStyle(color: Colors.white,fontSize: 30),),
-                            SizedBox(height: 30,),
                             TextField(
-                              controller: playlist,
-                              style: TextStyle(color: Colors.white),
                               decoration: InputDecoration(
-                              labelText: "Enter your playlist name",
-                                labelStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10,
-                                ),
-                                focusColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
+                                labelText: "Create your own playlist",
+                              ),
                             ),
-                    
-                            ),
-                            SizedBox(height: 30,),
-                        UiHelper.customButton("Create",fontsize:  18, borderradius: 20, bgcolor:Colors.white, forecolor:Colors.black,callback:(){ addDynamic();
-                          // LibraryController.addDynamic(listDynamic:listDynamic,context:context,playlist:playlist,arrContent:arrContent);
-                        }),
-                            // ElevatedButton(onPressed:(){ addDynamic(); } , child: Text("Create",style: TextStyle(fontSize: 18),),
-                            //   style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
-                            //       borderRadius: BorderRadius.circular(20)
-                            //   ),backgroundColor: Colors.white,foregroundColor: Colors.black),),
+                            SizedBox(height: 20,),
+                            SizedBox(height: 50,child: UiHelper.customButton("Create",bgcolor:Colors.black,forecolor: Colors.white.withOpacity(0.9),fontsize: 20,borderradius: 10,callback: (){UiHelper.CustomAlertBox(context, "Are you sure you want to create your own playlist?",alertbtn:"createPlaylist",callback: () {
+                              addDynamic();
+                            });}),),
+
                           ],
                         ),
                       ),
-                  );
-                });},
+                    );
+                  },);
+                },
+                // {showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
+                //   return Container(
+                //       height: 250,
+                //       decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.only(
+                //           topLeft: Radius.circular(16.0),
+                //           topRight: Radius.circular(16.0),
+                //         ),
+                //         color: Color(0xff232f34),
+                //       ),
+                //       child: Padding(
+                //         padding: const EdgeInsets.all(8.0),
+                //         child: Column(
+                //           children: [
+                //             UiHelper.customText("Create playlist",color: Colors.white,fontsize: 30),
+                //             // Text("Create playlist",style: TextStyle(color: Colors.white,fontSize: 30),),
+                //             SizedBox(height: 30,),
+                //             TextField(
+                //               controller: playlist,
+                //               style: TextStyle(color: Colors.white),
+                //               decoration: InputDecoration(
+                //               labelText: "Enter your playlist name",
+                //                 labelStyle: TextStyle(
+                //                   color: Colors.white,
+                //                   fontSize: 10,
+                //                 ),
+                //                 focusColor: Colors.white,
+                //                 border: OutlineInputBorder(
+                //                   borderRadius: BorderRadius.circular(10),
+                //                 ),
+                //             ),
+                //
+                //             ),
+                //             SizedBox(height: 30,),
+                //         UiHelper.customButton("Create",fontsize:  18, borderradius: 20, bgcolor:Colors.white, forecolor:Colors.black,callback:(){ addDynamic();
+                //           // LibraryController.addDynamic(listDynamic:listDynamic,context:context,playlist:playlist,arrContent:arrContent);
+                //         }),
+                //             // ElevatedButton(onPressed:(){ addDynamic(); } , child: Text("Create",style: TextStyle(fontSize: 18),),
+                //             //   style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
+                //             //       borderRadius: BorderRadius.circular(20)
+                //             //   ),backgroundColor: Colors.white,foregroundColor: Colors.black),),
+                //           ],
+                //         ),
+                //       ),
+                //   );
+                // });},
                 icon: const Icon(Icons.add,color: Colors.white,),
                 iconSize: 35,
               ),
