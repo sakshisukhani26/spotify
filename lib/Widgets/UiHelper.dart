@@ -116,29 +116,23 @@ class UiHelper {
   }
 
   static CustomAlertBox(BuildContext context, String text,
-      {String? alertbtn, Signin? navigateTo,VoidCallback? callback}) {
+      {String? alertbtn, Signin? navigateTo, VoidCallback? callback}) {
     return showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
             title: Text(text),
             // content: ,
-            actions: alertbtn != "logout"
+            actions: alertbtn == "logout" ||alertbtn == "createPlaylist"
                 ? [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text("ok"))
-                  ]
-                : [
                     TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
                       child: Text('Cancel'),
                     ),
-                    alertbtn == "logout" ? TextButton(
+                    alertbtn == "logout"
+                        ? TextButton(
                             onPressed: () async {
                               SharedPreferences preferences =
                                   await SharedPreferences.getInstance();
@@ -149,14 +143,23 @@ class UiHelper {
                                       builder: (context) => navigateTo!));
                             },
                             child: Text('OK'),
-                          ): alertbtn=="createPlaylist" ? TextButton(
-                            onPressed: () {
-                              callback!();
-                              // Navigator.of(context).pop();
-                            },
-                            child: Text('Cancel'),
-                          ):Text("Hello"),
-
+                          )
+                        : alertbtn == "createPlaylist"
+                            ? TextButton(
+                                onPressed: () {
+                                  callback!();
+                                  // Navigator.of(context).pop();
+                                },
+                                child: Text('Ok'),
+                              )
+                            : Text("Hello"),
+                  ]
+                : [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text("ok"))
                   ],
 
             // TextButton(

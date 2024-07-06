@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:spotify/Screens/Library/Controllers/libraryController.dart';
 import 'package:spotify/Widgets/UiHelper.dart';
@@ -17,7 +19,8 @@ class _LibraryState extends State<Library> {
     arrContent=[{
       "name":playlist.text.toString(),
     }];
-    Navigator.of(context).pop();
+    log(context.toString());
+    Navigator.pop(context);
   }
 
   TextEditingController playlist=TextEditingController();
@@ -44,7 +47,7 @@ class _LibraryState extends State<Library> {
               // SizedBox(width: 10,),
               IconButton(
                 onPressed: (){
-                  showDialog(context: context, builder: (BuildContext context){
+                  showDialog(context: context, builder: (context){
                     return AlertDialog(
                       backgroundColor: Colors.white.withOpacity(0.9),
                       title: Text("Create Playlist"),
@@ -53,14 +56,22 @@ class _LibraryState extends State<Library> {
                         child: Column(
                           children: [
                             TextField(
+                              controller:playlist,
                               decoration: InputDecoration(
                                 labelText: "Create your own playlist",
                               ),
                             ),
                             SizedBox(height: 20,),
-                            SizedBox(height: 50,child: UiHelper.customButton("Create",bgcolor:Colors.black,forecolor: Colors.white.withOpacity(0.9),fontsize: 20,borderradius: 10,callback: (){UiHelper.CustomAlertBox(context, "Are you sure you want to create your own playlist?",alertbtn:"createPlaylist",callback: () {
+                            SizedBox(height: 50,child: UiHelper.customButton("Create",bgcolor:Colors.black,forecolor: Colors.white.withOpacity(0.9),fontsize: 20,borderradius: 10,callback: (){
+                              // UiHelper.CustomAlertBox(context, "Are you sure you want to create your own playlist?",alertbtn:"createPlaylist",callback: () {
                               addDynamic();
-                            });}),),
+                              // LibraryController.addDynamic(listDynamic:listDynamic,
+                              //     context:context,
+                              //     playlist:playlist,
+                              //     arrContent:arrContent);
+                            // }
+                            // );
+                            }),),
 
                           ],
                         ),
