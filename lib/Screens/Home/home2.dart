@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sticky_headers/sticky_headers/widget.dart';
+// import 'package:sticky_headers/sticky_headers/widget.dart';
 
 class Home2 extends StatefulWidget {
   const Home2({super.key});
