@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:spotify/Screens/Albums/Album.dart';
 import 'package:spotify/Screens/Artist/Artist.dart';
 import 'package:spotify/Screens/Home/Home.dart';
 import 'package:spotify/Screens/Library/Library.dart';
+import 'package:spotify/Screens/Play/Player.dart';
 import 'package:spotify/Screens/Settings/Settings.dart';
 import 'package:spotify/Screens/Firstscreen/firstscreen.dart';
 import 'package:spotify/Screens/Signup/signup.dart';
 import 'package:spotify/Screens/Splashscreen/splash.dart';
-
+import 'package:provider/provider.dart';
 import 'Screens/Login/login.dart';
 import 'Screens/Navbar/navigationBar.dart';
 
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SplashScreen2(),
+      home: AudioPlayerWidget(),
       debugShowCheckedModeBanner: false,
     );
   }
