@@ -28,6 +28,8 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
   bool _isPlaying = false;
   Duration duration=Duration.zero;
   Duration position=Duration.zero;
+  bool isRepeat=false;
+  Color color=Colors.black;
 
   // String formatTime(int seconds) {
   //   return '${(Duration(seconds: seconds))}'.split('.')[0].padLeft(8, '0');
@@ -61,7 +63,7 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
     });
 
     // Load the audio file to get its duration - Changed by Abhay
-    // audioPlayer.setSource(AssetSource('audio/song.mp3'));
+    audioPlayer.setSource(AssetSource('audio/song.mp3'));
   }
   void handleSeek(double value){
     audioPlayer.seek(Duration(seconds: value.toInt()));
@@ -147,6 +149,19 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
               children: [
                 CircleAvatar(radius: 35,
                   child: IconButton(
+                    icon:Icon(Icons.repeat,color: color,),
+                    onPressed: () async{
+                     if(isRepeat==false){
+                       audioPlayer.setReleaseMode(ReleaseMode.loop);
+                       setState(() {
+                         isRepeat=true;
+                         color=Colors.blue;
+                       });
+                     }
+                    },
+                  ),),
+                CircleAvatar(radius: 35,
+                  child: IconButton(
                     icon:Icon(Icons.fast_forward),
                     onPressed: () async{
                       await audioPlayer.pause();
@@ -170,9 +185,7 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
                   child: IconButton(
                     icon:Icon(Icons.fast_forward),
                     onPressed: () async{
-                      await audioPlayer.pause();
-                      await audioPlayer.seek(Duration(seconds: 10));
-                      await audioPlayer.resume();
+                     // audioPlayer.setPlaybackRate();
                     },
                   ),),
             ],),
