@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:spotify/Screens/Library/Controllers/LibraryController.dart';
+import 'package:spotify/Screens/Library/Controllers/libraryController.dart';
 import 'package:spotify/Widgets/UiHelper.dart';
 
 class Library2 extends StatefulWidget {
@@ -11,41 +11,43 @@ class Library2 extends StatefulWidget {
   State<Library2> createState() => _Library2State();
 }
 
-var arrContent = [];
+// var arrContent = [];
 // List<DynamicWidget> listDynamic=[];
-List<AddPlaylist> playLists = [];
-AddPlaylist? playlist;
-var itemcount = 0;
+// List<AddPlaylist> playLists = [];
+// AddPlaylist? playlist;
+// var itemcount = 0;
+// LibraryController? controller;
 
 class _Library2State extends State<Library2> {
-  addDynamic(String playlistname) {
-    log("hello");
-    playlist = new AddPlaylist(playlistname: playlistname);
-    playLists.add(playlist!);
-    log(playLists[0].playlistname.toString());
-    itemcount = playLists.length;
-    // listDynamic.add(new DynamicWidget());
-    // setState((){});
-    // arrContent=[{
-    //   "name":playlist.text.toString(),
-    // }];
-    // log("${listDynamic.length}");
-    Navigator.pop(context);
-  }
-
-  removeDynamic(int index) {
-    playLists.removeAt(index);
-    itemcount = playLists.length;
-    // listDynamic.add(new DynamicWidget());
-    // setState((){});
-    // arrContent=[{
-    //   "name":playlist.text.toString(),
-    // }];
-    // log("${listDynamic.length}");
-    Navigator.pop(context);
-  }
-
   TextEditingController playlistcontroller = TextEditingController();
+  // addDynamic(String playlistname) {
+  //   log("hello");
+  //   playlist = new AddPlaylist(playlistname: playlistname);
+  //   playLists.add(playlist!);
+  //   log(playLists[0].playlistname.toString());
+  //   itemcount = playLists.length;
+  //   // listDynamic.add(new DynamicWidget());
+  //   // setState((){});
+  //   // arrContent=[{
+  //   //   "name":playlist.text.toString(),
+  //   // }];
+  //   // log("${listDynamic.length}");
+  //   Navigator.pop(context);
+  // }
+
+  // removeDynamic(int index) {
+  //   playLists.removeAt(index);
+  //   itemcount = playLists.length;
+  //   // listDynamic.add(new DynamicWidget());
+  //   // setState((){});
+  //   // arrContent=[{
+  //   //   "name":playlist.text.toString(),
+  //   // }];
+  //   // log("${listDynamic.length}");
+  //   Navigator.pop(context);
+  // }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,9 +81,10 @@ class _Library2State extends State<Library2> {
                                     forecolor: Colors.white.withOpacity(0.9),
                                     fontsize: 20,
                                     borderradius: 10, callback: () {
-                                      addDynamic(playlistcontroller.text);
+                                      LibraryController().addDynamic(playlistcontroller.text);
                                 }),
-                              )
+                              ),
+
                             ],
                           ),
                         ),
@@ -89,19 +92,34 @@ class _Library2State extends State<Library2> {
                     });
               },
               icon: Icon(Icons.add)),
+          Text(LibraryController().playLists.value.length.toString()),
 
-    Expanded(
-      child: ListView.builder(itemCount: playLists.length,
-              shrinkWrap: true,
+          Expanded(
+            child: ListView.builder(
+                shrinkWrap:true,
+                itemCount:LibraryController().playLists.value.length,
                 itemBuilder: (context,index){
-              return Text(playLists[index].playlistname!);
-              //   ListTile(
-              //   leading: UiHelper.iconBtn( 30, color:Colors.white,image: true,imagePath: "https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg",height: 70,width:70),
-              //   title: Text(playLists[index].playlistname!),
-              // );
+                  log(LibraryController().playLists.value[index].playlistname!);
+                  return Text("lavina");
+                  // return ListTile(
+                  //   leading: UiHelper.iconBtn( 30, color:Colors.white,image: true,imagePath: "https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg",height: 70,width:70),
+                  //   title: Text(LibraryController().playLists.value[index].playlistname!),
+                  // );
+                }),
+          ),
 
-            }),
-    ),
+    // Expanded(
+    //   child: ListView.builder(itemCount: playLists.length,
+    //           shrinkWrap: true,
+    //             itemBuilder: (context,index){
+    //           return Text(playLists[index].playlistname!);
+    //           //   ListTile(
+    //           //   leading: UiHelper.iconBtn( 30, color:Colors.white,image: true,imagePath: "https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg",height: 70,width:70),
+    //           //   title: Text(playLists[index].playlistname!),
+    //           // );
+    //
+    //         }),
+    // ),
 
           // ListView.builder(
           //   itemCount: 5,

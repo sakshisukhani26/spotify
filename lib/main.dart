@@ -3,6 +3,7 @@ import 'package:spotify/Screens/Albums/Album.dart';
 import 'package:spotify/Screens/Artist/Artist.dart';
 import 'package:spotify/Screens/Home/Home.dart';
 import 'package:spotify/Screens/Library/Library.dart';
+import 'package:spotify/Screens/Library/library2.dart';
 import 'package:spotify/Screens/Settings/Settings.dart';
 import 'package:spotify/Screens/Firstscreen/firstscreen.dart';
 import 'package:spotify/Screens/Signup/signup.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SplashScreen2(),
+      home: Library2(),
       debugShowCheckedModeBanner: false,
     );
   }
