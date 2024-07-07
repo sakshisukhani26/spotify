@@ -12,7 +12,7 @@ import 'Screens/Login/login.dart';
 import 'Screens/Navbar/navigationBar.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyApp()  );
 }
 
 class MyApp extends StatelessWidget {
