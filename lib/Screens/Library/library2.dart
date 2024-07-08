@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
-import 'package:spotify/Screens/Home/Home.dart';
-
-// import '../controllers/home_controller.dart';
+import 'package:spotify/Screens/Albums/Album.dart';
+import 'package:spotify/Screens/Artist/Artist.dart';
 import '../../Widgets/UiHelper.dart';
 import 'Controllers/libraryController.dart';
 
@@ -99,7 +99,7 @@ class Library2 extends GetView<LibraryController> {
                           bgcolor: Colors.transparent,
                           forecolor: Colors.white,
                           side: 1.0,
-                          sidecolor: Colors.white),
+                          sidecolor: Colors.white,callback: (){Navigator.push(context,MaterialPageRoute(builder: (context)=>Artist()));}),
                       SizedBox(
                         width: 10,
                       ),
@@ -110,7 +110,7 @@ class Library2 extends GetView<LibraryController> {
                           bgcolor: Colors.transparent,
                           forecolor: Colors.white,
                           side: 1.0,
-                          sidecolor: Colors.white),
+                          sidecolor: Colors.white,callback: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>Artist()));}),
                       SizedBox(
                         width: 10,
                       ),
@@ -121,7 +121,7 @@ class Library2 extends GetView<LibraryController> {
                           bgcolor: Colors.transparent,
                           forecolor: Colors.white,
                           side: 1.0,
-                          sidecolor: Colors.white),
+                          sidecolor: Colors.white,callback: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>Album()));}),
                     ],
                   ),
                   SizedBox(

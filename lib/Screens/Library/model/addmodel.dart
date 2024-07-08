@@ -7,6 +7,4 @@ class AddPlaylist {
   AddPlaylist(
       {@required this.playlistname,
       });
-
-
 }

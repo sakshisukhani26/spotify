@@ -7,6 +7,7 @@ import 'package:spotify/Screens/Navbar/navigationBar.dart';
 import 'package:spotify/Screens/Signup/signup.dart';
 
 import '../Firstscreen/firstscreen.dart';
+import '../Login/login.dart';
 
 class SplashScreen2 extends StatefulWidget{
   const SplashScreen2({super.key});
@@ -27,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen2>{
           Navigator.push(context, MaterialPageRoute(builder: (context)=>NavBar()));
         }
         else{
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>Signin()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
         }
       }
       else

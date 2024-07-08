@@ -49,30 +49,89 @@ class _AlbumState extends State<Album> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar: AppBar(
+        leading: BackButton(
+          color: Colors.white,
+        ),
+        // GestureDetector(child: Icon(Icons.arrow_back_ios,color: Colors.white,),onTap: (){Navigator.pop(context);},),
+        //
+        backgroundColor: Colors.black,
+        toolbarHeight: 200.0,
+        flexibleSpace: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(),
+            child: Column(
+              children: [
+                Stack(alignment: Alignment.bottomLeft, children: [
+                  Container(
+                    child: Image.network(
+                      "https://m.media-amazon.com/images/I/610FLv2T1QL._AC_UF1000,1000_QL80_.jpg",
+                      fit: BoxFit.fill,
+                      opacity: const AlwaysStoppedAnimation(.7),
+                    ),
+                    width: double.infinity,
+                    height: 200,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: Positioned(
+                        child: Text("Arijit Singh",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 70,
+                                fontWeight: FontWeight.bold))),
+                  ),
+                ]),
+              ],
+            ),
+          )
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          //   child: Column(
+          //       crossAxisAlignment: CrossAxisAlignment.start,
+          //       children: [
+          //         UiHelper.customText("Good Morning!",
+          //             color: Colors.white,
+          //             fontsize: 30,
+          //             fontweight: FontWeight.bold),
+          //         SizedBox(height: 10,),
+          //         TextField(
+          //           decoration: InputDecoration(
+          //             labelText: 'Search',
+          //             border: OutlineInputBorder(
+          //                 borderRadius: BorderRadius.circular(20)),
+          //             prefixIcon: Icon(Icons.search),
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          // ),
+        ),
+      ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
-            Stack(alignment: Alignment.bottomLeft, children: [
-              Container(
-                child: Image.network(
-                  "https://m.media-amazon.com/images/I/610FLv2T1QL._AC_UF1000,1000_QL80_.jpg",
-                  fit: BoxFit.fill,
-                  opacity: const AlwaysStoppedAnimation(.7),
-                ),
-                width: double.infinity,
-                height: 200,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: Positioned(
-                    child: Text("Arijit Singh",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 70,
-                            fontWeight: FontWeight.bold))),
-              ),
-            ]),
+            // Stack(alignment: Alignment.bottomLeft, children: [
+            //   Container(
+            //     child: Image.network(
+            //       "https://m.media-amazon.com/images/I/610FLv2T1QL._AC_UF1000,1000_QL80_.jpg",
+            //       fit: BoxFit.fill,
+            //       opacity: const AlwaysStoppedAnimation(.7),
+            //     ),
+            //     width: double.infinity,
+            //     height: 200,
+            //   ),
+            //   Padding(
+            //     padding: const EdgeInsets.only(left: 15),
+            //     child: Positioned(
+            //         child: Text("Arijit Singh",
+            //             style: TextStyle(
+            //                 color: Colors.white,
+            //                 fontSize: 70,
+            //                 fontWeight: FontWeight.bold))),
+            //   ),
+            // ]),
             Padding(
               padding: const EdgeInsets.only(left: 20,top: 40,right: 20),
               child: ListView.builder(
