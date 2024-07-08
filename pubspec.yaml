@@ -43,6 +43,9 @@ dependencies:
   flutter_screenutil: ^5.9.3
   flutter_bloc: ^8.1.6
   http: ^1.2.1
+  flutter_svg:
+  equatable:
+  on_audio_query:
 
 dev_dependencies:
   flutter_test:

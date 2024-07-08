@@ -9,6 +9,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool isPlayerOpened = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -135,7 +136,45 @@ class _HomeState extends State<Home> {
         ),
       ),
       backgroundColor: Colors.black,
+      floatingActionButton: floatingActionItem,
+    );
+  }
+  get floatingActionItem {
+    Widget floatingPlayer = GestureDetector(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(width: 35,),
+          Container(
+            height: 125,
+            width: 325,
+            color: Colors.teal,
+          ),
+        ],
+      ),
+      onTap: () {
+        setState(() {
+          isPlayerOpened = false;
+        });
+      },
     );
 
+    Widget floatingActionButton = FloatingActionButton(
+      onPressed: () {
+        setState(() {
+          isPlayerOpened = true;
+        });
+      },
+      child: Icon(Icons.play_arrow_outlined),
+    );
+
+    return AnimatedSwitcher(
+      reverseDuration: Duration(milliseconds: 0),
+      duration: const Duration(milliseconds: 200),
+      transitionBuilder: (Widget child, Animation<double> animation) {
+        return ScaleTransition(child: child, scale: animation);
+      },
+      child: isPlayerOpened ? floatingPlayer : floatingActionButton,
+    );
   }
 }
