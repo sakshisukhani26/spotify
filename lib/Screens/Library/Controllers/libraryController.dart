@@ -1,36 +1,41 @@
-import 'dart:developer';
+import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:spotify/Screens/Library/library2.dart';
 
-import '../Library.dart';
+import '../model/addmodel.dart';
 
-class LibraryController extends GetxController{
-
-  Rx<List<AddPlaylist>> playLists =  Rx<List<AddPlaylist>>([]);
+class LibraryController extends GetxController {
+  Rx<List<AddPlaylist>> playlists = Rx<List<AddPlaylist>>([]);
+  TextEditingController playlistTextEditingController = TextEditingController();
   late AddPlaylist playlist;
-  var itemcount = 0;
-
-  addDynamic(String playlistname) {
-    log("hello");
-    playlist = new AddPlaylist(playlistname: playlistname);
-    playLists.value.add(playlist);
-    log(playLists.value.length.toString());
-    itemcount = playLists.value.length;
-    // listDynamic.add(new DynamicWidget());
-    // setState((){});
-    // arrContent=[{
-    //   "name":playlist.text.toString(),
-    // }];
-    // log("${listDynamic.length}");
-    // Navigator.pop(context);
+  var itemCount = 0.obs;
+  @override
+  void onInit() {
+    super.onInit();
   }
 
   @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
+  void onReady() {
+    super.onReady();
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+    playlistTextEditingController.dispose();
+  }
+
+  addDynamic(String name,BuildContext context) {
+    playlist = AddPlaylist(playlistname: name,);
+    playlists.value.add(playlist);
+    itemCount.value = playlists.value.length;
+    playlistTextEditingController.clear();
+    Navigator.of(context).pop();
+  }
+
+  removeDynamic(int index) {
+    playlists.value.removeAt(index);
+    itemCount.value = playlists.value.length;
   }
 }
