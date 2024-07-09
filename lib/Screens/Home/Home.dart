@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:spotify/Widgets/UiHelper.dart';
 
+import '../Play/Player.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -56,8 +58,11 @@ class _HomeState extends State<Home> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
-                      SizedBox(width: 20,),
+                      IconButton(onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerWidget()));
+                      }, icon: Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),)
+                      // Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
+                      ,SizedBox(width: 20,),
                       Image.network("https://i.scdn.co/image/ab67616d0000b2735c2e8fa840241ce6adf33a35",height: 150,width: 120,),
                       SizedBox(width: 20,),
                       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
@@ -136,45 +141,45 @@ class _HomeState extends State<Home> {
         ),
       ),
       backgroundColor: Colors.black,
-      floatingActionButton: floatingActionItem,
+      // floatingActionButton: floatingActionItem,
     );
   }
-  get floatingActionItem {
-    Widget floatingPlayer = GestureDetector(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(width: 35,),
-          Container(
-            height: 125,
-            width: 325,
-            color: Colors.teal,
-          ),
-        ],
-      ),
-      onTap: () {
-        setState(() {
-          isPlayerOpened = false;
-        });
-      },
-    );
-
-    Widget floatingActionButton = FloatingActionButton(
-      onPressed: () {
-        setState(() {
-          isPlayerOpened = true;
-        });
-      },
-      child: Icon(Icons.play_arrow_outlined),
-    );
-
-    return AnimatedSwitcher(
-      reverseDuration: Duration(milliseconds: 0),
-      duration: const Duration(milliseconds: 200),
-      transitionBuilder: (Widget child, Animation<double> animation) {
-        return ScaleTransition(child: child, scale: animation);
-      },
-      child: isPlayerOpened ? floatingPlayer : floatingActionButton,
-    );
-  }
+  // get floatingActionItem {
+  //   Widget floatingPlayer = GestureDetector(
+  //     child: Row(
+  //       mainAxisAlignment: MainAxisAlignment.center,
+  //       children: [
+  //         SizedBox(width: 35,),
+  //         Container(
+  //           height: 125,
+  //           width: 325,
+  //           color: Colors.teal,
+  //         ),
+  //       ],
+  //     ),
+  //     onTap: () {
+  //       setState(() {
+  //         isPlayerOpened = false;
+  //       });
+  //     },
+  //   );
+  //
+  //   Widget floatingActionButton = FloatingActionButton(
+  //     onPressed: () {
+  //       setState(() {
+  //         isPlayerOpened = true;
+  //       });
+  //     },
+  //     child: Icon(Icons.play_arrow_outlined),
+  //   );
+  //
+  //   return AnimatedSwitcher(
+  //     reverseDuration: Duration(milliseconds: 0),
+  //     duration: const Duration(milliseconds: 200),
+  //     transitionBuilder: (Widget child, Animation<double> animation) {
+  //       return ScaleTransition(child: child, scale: animation);
+  //     },
+  //     child: isPlayerOpened ? floatingPlayer : floatingActionButton,
+  //   );
+  // }
 }
