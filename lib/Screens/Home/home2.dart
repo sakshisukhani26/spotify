@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-// import 'package:sticky_headers/sticky_headers/widget.dart';
+import 'package:spotify/Screens/Home/imagewidget.dart';
+
+import '../../Widgets/UiHelper.dart';
+import '../Albums/Album.dart';
 
 class Home2 extends StatefulWidget {
   const Home2({super.key});
@@ -9,205 +12,190 @@ class Home2 extends StatefulWidget {
 }
 
 class _Home2State extends State<Home2> {
+  var arrContent = [
+    {
+      "image":
+      "https://m.media-amazon.com/images/I/610FLv2T1QL._AC_UF1000,1000_QL80_.jpg",
+      "songname": "Lorem Ipsum1",
+      "threedot": Icons.more_vert,
+    },
+    {
+      "image":
+      "https://m.media-amazon.com/images/I/610FLv2T1QL._AC_UF1000,1000_QL80_.jpg",
+      "songname": "Lorem Ipsum1",
+      "threedot": Icons.more_vert,
+    },
+    {
+      "image":
+      "https://m.media-amazon.com/images/I/610FLv2T1QL._AC_UF1000,1000_QL80_.jpg",
+      "songname": "Lorem Ipsum1",
+      "threedot": Icons.more_vert,
+    },
+    {
+      "image":
+      "https://m.media-amazon.com/images/I/610FLv2T1QL._AC_UF1000,1000_QL80_.jpg",
+      "songname": "Lorem Ipsum1",
+      "threedot": Icons.more_vert,
+    },
+    {
+      "image":
+      "https://m.media-amazon.com/images/I/610FLv2T1QL._AC_UF1000,1000_QL80_.jpg",
+      "songname": "Lorem Ipsum1",
+      "threedot": Icons.more_vert,
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-//         child: StickyHeader(
-//                 header: Container(
-//                       child:Text("piyu"),
-//                     // height: 50.0,
-//                     // color: Colors.blueGrey[700],
-//                     // padding: EdgeInsets.symmetric(horizontal: 16.0),
-//                     // alignment: Alignment.centerLeft,
-//                     // child: Text(
-//                     //   'Header #$index',
-//                     //   style: const TextStyle(color: Colors.white),
-//                     // ),
-//                   ),
-//                 content: Text("lets see"),
-//                   // Image.network(
-//                   //   imageForIndex(index),
-//                   //   fit: BoxFit.cover,
-//                   //   width: double.infinity,
-//                   //   height: 200.0,
-//                   // ),
-//                 ),
-        ),
-      );
+      backgroundColor: Colors.black,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            backgroundColor: Colors.black,
+            expandedHeight: 200,
+            floating: true,
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Image.network("https://m.media-amazon.com/images/I/610FLv2T1QL._AC_UF1000,1000_QL80_.jpg",
+                fit: BoxFit.fill,
+                opacity: const AlwaysStoppedAnimation(.7),),
+              title: UiHelper.customText("Arijit Singh",color: Colors.white,fontweight: FontWeight.bold,fontsize: 40),
+            ),
+            leading: Icon(Icons.arrow_back_ios,color: Colors.white,),
+            actions: [
+              Icon(Icons.settings,color: Colors.white,),
+              SizedBox(width: 12,)
+            ],
+          ),
+          buildImages(),
+        ],
+      ),
+    );
   }
-}
+    Widget buildImages()=>SliverToBoxAdapter(
+      child:
+      Padding(
+        padding: const EdgeInsets.only(left: 15, top: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                UiHelper.customButton("About",fontsize:  15, fontweight:FontWeight.bold, borderradius: 25, bgcolor:Colors.transparent, forecolor:Colors.white,side: 1.0,sidecolor: Colors.white,
+                    callback: () {showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
+                      return Container(
+                        height: 350,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(
+                                "https://i.scdn.co/image/ab6761610000e5eb0261696c5df3be99da6ed3f3"),
+                            fit: BoxFit.cover,
+                          ),
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(16.0),
+                            topRight: Radius.circular(16.0),
+                          ),
+                          // color: Color(0xff232f34),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    });}),
+                SizedBox(width: 10,),
+                UiHelper.customButton("Albums",fontsize:  15, fontweight:FontWeight.bold, borderradius: 25, bgcolor:Colors.transparent, forecolor:Colors.white,side: 1.0,sidecolor: Colors.white,callback:(){Navigator.push(context, MaterialPageRoute(builder: (context)=>Album()));}),
+                Spacer(),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.shuffle,
+                    color: Colors.green,
+                    size: 25,
+                  ),
+                ),
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.play_circle,
+                      color: Colors.green,
+                      size: 35,
+                    )),
+              ],
+              // mainAxisAlignment: MainAxisAlignment.end,
+            ),
+            SizedBox(height: 10,),
+            UiHelper.customText("Popular", color:Colors.white,fontsize: 25),
+            ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading:
+                  UiHelper.customText((index+1).toString(), color:Colors.white, fontsize: 15),
+                  title: Container(
+                    height: 50,
+                    width: 50,
+                    child: Row(
+                      children: [
+                        Image.network(
+                          arrContent[index]["image"].toString() as String,fit: BoxFit.contain,
+                        ),
+                        SizedBox(width: 15,),
+                        UiHelper.customText(arrContent[index]["songname"].toString(), color:Colors.white, fontsize: 20),
+                        // Text(arrContent[index]["songname"].toString()),
+                      ],
+                    ),
+                  ),
+                  // subtitle: Text(arrContent[index]["songname"].toString()),
+                  trailing: IconButton(onPressed: (){},icon:Icon(Icons.more_vert),
+                    color: Colors.white,
+                  ),
+                );
+              },
+              itemCount: arrContent.length,
+            ),
+            SizedBox(height: 20,),
+            UiHelper.customText("Popular releases", color:Colors.white, fontsize: 25),
+            ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Container(
+                    height: 50,
+                    width: 50,
+                    child: Row(
+                      children: [
+                        Image.network(
+                          arrContent[index]["image"].toString() as String,
+                          height: 70,
+                          width: 70,
+                          fit: BoxFit.fill,
+                        ),
+                        SizedBox(width: 15,),
+                        Text(arrContent[index]["songname"].toString(),style: TextStyle(color: Colors.white),),
+                        // Text(arrContent[index]["songname"].toString()),
+                      ],
+                    ),
+                  ),
+                );
+              },
+              itemCount: arrContent.length,
+            ),
+            Container(
+              child: Text("About"),
+            )
+          ],
+        ),
+      )
+    );
 
-// import 'package:flutter/material.dart';
-// import 'package:spotify/Widgets/UiHelper.dart';
-// import 'package:sticky_headers/sticky_headers.dart';
-//
-// class Home2 extends StatefulWidget {
-//   const Home2({super.key});
-//
-//   @override
-//   State<Home2> createState() => _HomeState();
-// }
-//
-// class _HomeState extends State<Home2> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Text("hello")
-//                 // ListView.builder(
-//                 //     physics: NeverScrollableScrollPhysics(),
-//                 //   shrinkWrap: true,
-//                 //     itemBuilder: (context,index){
-//                 //   return StickyHeader(header: Container(
-//                 //     height: 50.0,
-//                 //     color: Colors.blueGrey[700],
-//                 //     padding: EdgeInsets.symmetric(horizontal: 16.0),
-//                 //     alignment: Alignment.centerLeft,
-//                 //     child: Text('Header #$index',
-//                 //       style: const TextStyle(color: Colors.white),
-//                 //     ),
-//                 //   ),
-//                 //     content: Container(
-//                 //       child: Text("lavina$index"),
-//                 //       // Image.network(
-//                 //       //   imageForIndex(index),
-//                 //       //   fit: BoxFit.cover,
-//                 //       //   width: double.infinity,
-//                 //       //   height: 200.0,
-//                 //       // ),
-//                 //     ),);
-//                 // }),
-//                 // SliverStickyHeaderBuilder(builder: (context,i)=>Text("Good morning")),
-//                 // CustomScrollView(
-//                 //   slivers: [
-//                 //     SliverAppBar(
-//                 //       backgroundColor: Colors.black,
-//                 //       title: Text("Good morning"),
-//                 //       floating: true,
-//                 //       pinned: true,
-//                 //     )
-//                 //   ],
-//                 // ),
-//                 // TopBar(),
-//                 // UiHelper.customText("Good Morning",color: Colors.white,fontsize: 30),
-//                 // SizedBox(height: 10,),
-//                 // TextField(
-//                 //   decoration: InputDecoration(
-//                 //     labelText: 'Search',
-//                 //     border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-//                 //     prefixIcon: Icon(Icons.search),
-//                 //   ),
-//                 // ),
-//                 // SizedBox(height: 30,),
-//                 // UiHelper.customText("Top Artist", color:Colors.white,fontsize:  20),
-//                 // SingleChildScrollView(
-//                 //   scrollDirection: Axis.horizontal,
-//                 //   child: Row(
-//                 //     children: [
-//                 //       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
-//                 //       SizedBox(width: 20,),
-//                 //       Image.network("https://i.scdn.co/image/ab67616d0000b2735c2e8fa840241ce6adf33a35",height: 150,width: 120,),
-//                 //       SizedBox(width: 20,),
-//                 //       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
-//                 //       SizedBox(width:20,),
-//                 //       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
-//                 //       SizedBox(width: 20,),
-//                 //       Image.network("https://https://i.scdn.co/image/ab67616d00001e021ad922dae0ba39e07cc15038",height: 150,width: 120,),
-//                 //       SizedBox(width: 20,),
-//                 //       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
-//                 //     ],
-//                 //   ),
-//                 // ),
-//                 // SizedBox(height: 30,),
-//                 // UiHelper.customText("India's Best",  color:Colors.white,fontsize:  20),
-//                 // SingleChildScrollView(
-//                 //   scrollDirection: Axis.horizontal,
-//                 //   child: Row(
-//                 //     children: [
-//                 //       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
-//                 //       SizedBox(width: 20,),
-//                 //       Image.network("https://i.scdn.co/image/ab67706c0000da84c6567ac6fe1cb8b9ad541b52",height: 150,width: 120,),
-//                 //       SizedBox(width: 20,),
-//                 //       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
-//                 //       SizedBox(width:20,),
-//                 //       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
-//                 //       SizedBox(width: 20,),
-//                 //       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
-//                 //       SizedBox(width: 20,),
-//                 //       Image.network("https://https://i.scdn.co/image/ab67616d0000b2735c2e8fa840241ce6adf33a35",height: 150,width: 120,),
-//                 //     ],
-//                 //   ),
-//                 // ),
-//                 // SizedBox(height: 30,),
-//                 // UiHelper.customText("Songs that you may like", color:Colors.white,fontsize:  20),
-//                 // SingleChildScrollView(
-//                 //   scrollDirection: Axis.horizontal,
-//                 //   child: Row(
-//                 //     children: [
-//                 //       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
-//                 //       SizedBox(width: 20,),
-//                 //       Image.network("https://i.scdn.co/image/ab67706c0000da84c6567ac6fe1cb8b9ad541b52",height: 150,width: 120,),
-//                 //       SizedBox(width: 20,),
-//                 //       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
-//                 //       SizedBox(width:20,),
-//                 //       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
-//                 //       SizedBox(width: 20,),
-//                 //       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
-//                 //       SizedBox(width: 20,),
-//                 //       Image.network("https://https://i.scdn.co/image/ab67616d0000b2735c2e8fa840241ce6adf33a35",height: 150,width: 120,),
-//                 //     ],
-//                 //   ),
-//                 // ),
-//                 // SizedBox(height: 30,),
-//                 // UiHelper.customText("Top Mixes",  color:Colors.white,fontsize:  20),
-//                 // SingleChildScrollView(
-//                 //   scrollDirection: Axis.horizontal,
-//                 //   child: Row(
-//                 //     children: [
-//                 //       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
-//                 //       SizedBox(width: 20,),
-//                 //       Image.network("https://i.scdn.co/image/ab67706c0000da84c6567ac6fe1cb8b9ad541b52",height: 150,width: 120,),
-//                 //       SizedBox(width: 20,),
-//                 //       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
-//                 //       SizedBox(width:20,),
-//                 //       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
-//                 //       SizedBox(width: 20,),
-//                 //       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
-//                 //       SizedBox(width: 20,),
-//                 //       Image.network("https://https://i.scdn.co/image/ab67616d0000b2735c2e8fa840241ce6adf33a35",height: 150,width: 120,),
-//                 //     ],
-//                 //   ),
-//                 // ),
-//     //           ],
-//     //         ),
-//     //       ),
-//     //     ),
-//     //   ),
-//     //   backgroundColor: Colors.black,
-//
-//     );
-//   }
-// }
-//
-// // ListView.builder(itemBuilder: (context, index) {
-// // return StickyHeader(
-// // header: Container(
-// // height: 50.0,
-// // color: Colors.blueGrey[700],
-// // padding: EdgeInsets.symmetric(horizontal: 16.0),
-// // alignment: Alignment.centerLeft,
-// // child: Text('Header #$index',
-// // style: const TextStyle(color: Colors.white),
-// // ),
-// // ),
-// // content: Container(
-// // child: Image.network(
-// // imageForIndex(index),
-// // fit: BoxFit.cover,
-// // width: double.infinity,
-// // height: 200.0,
-// // ),
-// // ),
-// // );
-// // });
-// // }
+}
