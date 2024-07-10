@@ -9,7 +9,7 @@ import '../../../Widgets/UiHelper.dart';
 class LoginController{
   static login(String email,String password,BuildContext context)async{
     if(email=="" || password==""){
-      return UiHelper.CustomAlertBox(context, "Enter Required Field's");
+      return UiHelper.CustomAlertBox(context, "Enter Required Fields");
     }
     else{
       SharedPreferences prefs=await SharedPreferences.getInstance();

@@ -25,8 +25,7 @@ class _FirstscreenState extends State<Firstscreen> {
                 UiHelper.customText("Millions of songs.\nFree on spotify.",color:Colors.white,fontsize: 30,fontweight: FontWeight.bold,align: TextAlign.center,),
               // Text("Millions of songs.\nFree on spotify.",style: TextStyle(color:Colors.white,fontSize: 30,fontWeight: FontWeight.bold,),textAlign: TextAlign.center,),
             ),
-            SizedBox(
-            height:30,),
+            SizedBox(height:30,),
             Center(
               child: UiHelper.customButton("Sign up free", fontsize: 20, fontweight:FontWeight.bold, borderradius: 25, bgcolor:Colors.greenAccent.shade400, forecolor:Colors.black,height: 60,width: 350),
             ),

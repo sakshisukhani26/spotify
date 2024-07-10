@@ -37,7 +37,6 @@ class _SigninState extends State<Signin> {
                       Image.network("https://play-lh.googleusercontent.com/7ynvVIRdhJNAngCg_GI7i8TtH8BqkJYmffeUHsG-mJOdzt1XLvGmbsKuc5Q1SInBjDKN=w240-h480-rw",height: 80,width: 80,),
                       SizedBox(width: 10,),
                       UiHelper.customText("Spotify",color: Colors.white,fontsize: 40),
-                      // Text("Spotify",style: TextStyle(color: Colors.white,fontSize: 40,)),
                     ],
               ),
               SizedBox(height: 50,),
@@ -53,81 +52,13 @@ class _SigninState extends State<Signin> {
                   },
                 );
               },),
-              // TextField(
-              //   controller: pwdController,
-              //   obscureText: passwordVisible,
-              //   decoration: InputDecoration(
-              //     border: UnderlineInputBorder(),
-              //     hintText: "Password",
-              //     labelText: "Password",
-              //     helperText:"Password must contain special character",
-              //     helperStyle:TextStyle(color:Colors.green),
-              //     suffixIcon: IconButton(
-              //       icon: Icon(passwordVisible
-              //           ? Icons.visibility
-              //           : Icons.visibility_off),
-              //       onPressed: () {
-              //         setState(
-              //               () {
-              //             passwordVisible = !passwordVisible;
-              //           },
-              //         );
-              //       },
-              //     ),
-              //     alignLabelWithHint: false,
-              //     filled: true,
-              //   ),
-              //   keyboardType: TextInputType.visiblePassword,
-              //   textInputAction: TextInputAction.done,
-              // ),
-              SizedBox(height: 30,),
-              // Container(
-              //   child: Padding(
-              //     padding: const EdgeInsets.symmetric(horizontal: 10),
-              //     child: TextField(
-              //       controller: dateController,
-              //       decoration: InputDecoration(
-              //         labelText: 'DATE',
-              //         filled: true,
-              //         enabledBorder: OutlineInputBorder(
-              //           borderSide: BorderSide.none,
-              //         ),
-              //         focusedBorder: OutlineInputBorder(
-              //           borderSide: BorderSide(color: Colors.blue)
-              //         ),
-              //       ),
-              //       readOnly: true,
-              //       onTap: (){selectDate();},
-              //     ),
-              //   ),
-              // ),
 
-              // Container(
-              //   child: Padding(
-              //     padding: const EdgeInsets.symmetric(horizontal: 10),
-              //     child: DateTimeField(
-              //       onChanged: selectDate(),
-              //       controller: dateController,
-              //       format: format,
-              //       decoration: InputDecoration(
-              //         label: Text("enter your birth date"),
-              //         suffixIcon: Icon(Icons.calendar_today),
-              //       ),
-              //       onShowPicker: (context, currentValue) async{
-              //       final date = showDatePicker(context: context, firstDate: DateTime(1900), lastDate: DateTime(2100));
-              //       },style: TextStyle(backgroundColor: Colors.white)),
-              //   ),
-              //   decoration: BoxDecoration(
-              //     color: Colors.grey.shade300,
-              //     borderRadius: BorderRadius.circular(10)
-              //   ),
-              // ),
+              SizedBox(height: 30,),
+
               Container(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child:
-                    // UiHelper.customTextField(dateController, "enter your birth date",icondata:Icons.calendar_today, ),
-                  TextField(
+                  child:TextField(
                     decoration: InputDecoration(
                               label: Text("enter your birth date"),
                               suffixIcon: Icon(Icons.calendar_today),
@@ -168,14 +99,10 @@ class _SigninState extends State<Signin> {
                 mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     UiHelper.customText("Already have an account?",color: Colors.white),
-                    // Text("Already have an account?",style: TextStyle(color: Colors.white),),
 
                     UiHelper.customTextButton("Sign in",color: Colors.green,callback:(){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
                     } ),
-                    // TextButton(onPressed: (){
-                    //   Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
-                    // }, child: Text("Sign in",style: TextStyle(color: Colors.green),))
                   ],
                 ),
             ],

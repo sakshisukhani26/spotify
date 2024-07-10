@@ -10,7 +10,6 @@ import 'package:spotify/Screens/Firstscreen/firstscreen.dart';
 import 'package:spotify/Screens/Signup/signup.dart';
 import 'package:spotify/Screens/Splashscreen/splash.dart';
 
-import 'Screens/Home/appbar.dart';
 import 'Screens/Login/login.dart';
 import 'Screens/Navbar/navigationBar.dart';
 
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Home2(),
+      home: SplashScreen2(),
       debugShowCheckedModeBanner: false,
     );
   }
