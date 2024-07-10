@@ -2,6 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:spotify/Screens/Home/Home.dart';
 import 'package:spotify/Screens/Library/Library.dart';
+import 'package:spotify/Screens/Play/Player.dart';
 import 'package:spotify/Screens/Settings/Settings.dart';
 
 class NavBar extends StatefulWidget {
@@ -18,6 +19,8 @@ class _NavigationbarState extends State<NavBar> {
   int _currentIndex = 0;
   Duration duration=Duration.zero;
   Duration position=Duration.zero;
+  bool isRepeat=false;
+  Color color=Colors.white;
   void initState() {
     super.initState();
     audioPlayer.onPlayerStateChanged.listen((state) {
@@ -53,24 +56,62 @@ class _NavigationbarState extends State<NavBar> {
         color: Colors.blueGrey,
         width: double.infinity,
         height: 60,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Image.network("https://i.scdn.co/image/ab67616d0000b273ba5db46f4b838ef6027e6f96",fit: BoxFit.cover,),
-            Text("Song A",style: TextStyle(color: Colors.white),),
-            IconButton(
-              icon:Icon(_isPlaying?Icons.pause:Icons.play_arrow,color:Colors.white,size: 30,),
-              onPressed: () async{
-                if(_isPlaying){
-                  await audioPlayer.pause();
-                }
-                else{
-                  await audioPlayer.play(AssetSource('audio/song.mp3'));
-                }
-              },
-            )
-          ],
+        child:
+        GestureDetector(
+          onTap: (){
+            // Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerWidget()));
+            showModalBottomSheet<void>(context: context, isScrollControlled:true,backgroundColor: Colors.black,builder: (BuildContext context) {
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                home: Scaffold(
+                  appBar: AppBar(
+                    flexibleSpace:SafeArea(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 50),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            BackButton(color: Colors.white,onPressed: (){Navigator.pop(context);},),
+                            IconButton(onPressed: (){}, icon: Icon(Icons.menu,color: Colors.white,)),
+                          ],
+                        ),
+                      ),
+                    ),
+                    backgroundColor: Colors.black,
+                    toolbarHeight: 100,
+                  ),
+                  body: AudioPlayerWidget(),
+                ),
+              );
+                // AudioPlayerWidget();
+            });
+            },
+          child:
+            // Hero(
+            // tag: "page",
+            // child:
+            Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+            
+              Image.network("https://i.scdn.co/image/ab67616d0000b273ba5db46f4b838ef6027e6f96",fit: BoxFit.cover,),
+              Text("Song A",style: TextStyle(color: Colors.white),),
+              IconButton(
+                icon:Icon(_isPlaying?Icons.pause:Icons.play_arrow,color:Colors.white,size: 30,),
+                onPressed: () async{
+                  if(_isPlaying){
+                    await audioPlayer.pause();
+                  }
+                  else{
+                    await audioPlayer.play(AssetSource('audio/song.mp3'));
+                  }
+                },
+              )
+            ],
+            ),
+          // ),
         ),
+
     );
   }
   final List<Widget> _screens = [
@@ -113,7 +154,6 @@ class _NavigationbarState extends State<NavBar> {
             ),
           ],
         ),
-
     );
   }
 

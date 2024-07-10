@@ -9,7 +9,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text('Audio Player')),
+        appBar: AppBar(
+            // title: Text('Audio Player')
+        ),
         body: Center(
           child: AudioPlayerWidget(),
         ),
@@ -113,126 +115,146 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(
+      //  flexibleSpace:SafeArea(
+      //    child: Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //       children: [
+      //         BackButton(color: Colors.white,),
+      //         IconButton(onPressed: (){}, icon: Icon(Icons.menu,color: Colors.white,)),
+      //       ],
+      //     ),
+      //  ),
+      //   backgroundColor: Colors.black,
+      //   toolbarHeight: 50,
+      //   // flexibleSpace: SafeArea(
+      //   //   child: Text("Audio Player",style: TextStyle(color: Colors.white),),
+      //   // ),
+      // ),
       body:
-      SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 50,horizontal: 20),
-          child: Column(
-            children: [
-              ClipRRect(borderRadius: BorderRadius.circular(20),
-                child: Image.network("https://i.scdn.co/image/ab67616d0000b273ba5db46f4b838ef6027e6f96",width: double.infinity,height: 350,fit: BoxFit.cover,),
-              ),
-              SizedBox(height: 30,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Tu hi tu",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 30),),
-                  IconButton(
-                    icon:Icon(Icons.add_circle_outline_outlined,color:Colors.white,size: 30),
-                    onPressed: () async{
-                      // audioPlayer.setPlaybackRate();
-                    },
-                  ),
-                ],
-              ),
-              Slider(
-                min:0,
-                max: duration.inSeconds.toDouble(),
-                value: position.inSeconds.toDouble(),
-                onChanged: (value)async{
-                  final position=Duration(seconds: value.toInt());
-                  audioPlayer.seek(position);
-                  audioPlayer.resume();
-                },
-
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
+      // Hero(
+      //   tag: "page",
+      //   child:
+        SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 50,horizontal: 20),
+            child: Column(
+              children: [
+                ClipRRect(borderRadius: BorderRadius.circular(20),
+                  child: Image.network("https://i.scdn.co/image/ab67616d0000b273ba5db46f4b838ef6027e6f96",width: double.infinity,height: 350,fit: BoxFit.cover,),
+                ),
+                SizedBox(height: 30,),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(formatDuration(position),style: TextStyle(color: Colors.white),),
-                    Text(formatDuration(duration-position),style: TextStyle(color: Colors.white)),
+                    Text("Tu hi tu",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 30),),
+                    IconButton(
+                      icon:Icon(Icons.add_circle_outline_outlined,color:Colors.white,size: 30),
+                      onPressed: () async{
+                        // audioPlayer.setPlaybackRate();
+                      },
+                    ),
                   ],
                 ),
-              ),
-              SizedBox(height: 10,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(
-                    icon:Icon(Icons.repeat,color: color,size: 30),
-                    onPressed: () async{
-                      if(isRepeat==false){
-                        audioPlayer.setReleaseMode(ReleaseMode.loop);
-                        setState(() {
-                          isRepeat=true;
-                          color=Colors.green;
-                        });
-                      }
-                      else if(isRepeat==true)
-                      {
-                        setState(() {
-                          isRepeat=false;
-                          color=Colors.white;
-                        });
-                      }
-                    },
+                Slider(
+                  min:0,
+                  max: duration.inSeconds.toDouble(),
+                  value: position.inSeconds.toDouble(),
+                  onChanged: (value)async{
+                    final position=Duration(seconds: value.toInt());
+                    audioPlayer.seek(position);
+                    audioPlayer.resume();
+                  },
+        
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(formatDuration(position),style: TextStyle(color: Colors.white),),
+                      Text(formatDuration(duration-position),style: TextStyle(color: Colors.white)),
+                    ],
                   ),
-                  IconButton(
-                      icon:Icon(Icons.skip_previous,color:Colors.white,size: 40),
+                ),
+                SizedBox(height: 10,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    IconButton(
+                      icon:Icon(Icons.repeat,color: color,size: 30),
                       onPressed: () async{
-                        await audioPlayer.pause();
-                        await audioPlayer.seek(Duration(seconds: 10));
-                        await audioPlayer.resume();
+                        if(isRepeat==false){
+                          audioPlayer.setReleaseMode(ReleaseMode.loop);
+                          setState(() {
+                            isRepeat=true;
+                            color=Colors.green;
+                          });
+                        }
+                        else if(isRepeat==true)
+                        {
+                          setState(() {
+                            isRepeat=false;
+                            color=Colors.white;
+                          });
+                        }
                       },
                     ),
                     IconButton(
-                      icon:Icon(_isPlaying?Icons.pause_circle:Icons.play_circle,color:Colors.white,size: 70,),
-                      onPressed: () async{
-                        if(_isPlaying){
+                        icon:Icon(Icons.skip_previous,color:Colors.white,size: 40),
+                        onPressed: () async{
                           await audioPlayer.pause();
-                        }
-                        else{
-                          await audioPlayer.play(AssetSource('audio/song.mp3'));
-                        }
-                      },
-                    ), IconButton(
-                      icon:Icon(Icons.skip_next,color:Colors.white,size: 40),
+                          await audioPlayer.seek(Duration(seconds: 10));
+                          await audioPlayer.resume();
+                        },
+                      ),
+                      IconButton(
+                        icon:Icon(_isPlaying?Icons.pause_circle:Icons.play_circle,color:Colors.white,size: 70,),
+                        onPressed: () async{
+                          if(_isPlaying){
+                            await audioPlayer.pause();
+                          }
+                          else{
+                            await audioPlayer.play(AssetSource('audio/song.mp3'));
+                          }
+                        },
+                      ), IconButton(
+                        icon:Icon(Icons.skip_next,color:Colors.white,size: 40),
+                        onPressed: () async{
+                         // audioPlayer.setPlaybackRate();
+                        },
+                      ),
+                    IconButton(
+                      icon:Icon(Icons.shuffle,color:Colors.white,size: 30),
                       onPressed: () async{
-                       // audioPlayer.setPlaybackRate();
+                        // audioPlayer.setPlaybackRate();
                       },
                     ),
-                  IconButton(
-                    icon:Icon(Icons.shuffle,color:Colors.white,size: 30),
-                    onPressed: () async{
-                      // audioPlayer.setPlaybackRate();
-                    },
-                  ),
-
-              ],),
-
-              // <Widget>[
-              // IconButton(
-              //   icon: Icon(_isPlaying ? Icons.pause : Icons.play_arrow),
-              //   iconSize: 64.0,
-              //   onPressed: () {
-              //     if (_isPlaying) {
-              //       _pauseAudio();
-              //     } else {
-              //       _playAudio();
-              //     }
-              //   },
-              // ),
-              // SizedBox(height: 20),
-              // IconButton(
-              //   icon: Icon(Icons.stop),
-              //   onPressed: _stopAudio,
-              // ),
-            ],
+        
+                ],),
+        
+                // <Widget>[
+                // IconButton(
+                //   icon: Icon(_isPlaying ? Icons.pause : Icons.play_arrow),
+                //   iconSize: 64.0,
+                //   onPressed: () {
+                //     if (_isPlaying) {
+                //       _pauseAudio();
+                //     } else {
+                //       _playAudio();
+                //     }
+                //   },
+                // ),
+                // SizedBox(height: 20),
+                // IconButton(
+                //   icon: Icon(Icons.stop),
+                //   onPressed: _stopAudio,
+                // ),
+              ],
+            ),
           ),
         ),
-      ),
+      // ),
       backgroundColor: Colors.black,
     );
 
