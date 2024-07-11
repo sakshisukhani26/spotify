@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:spotify/Screens/Home/Home.dart';
@@ -50,6 +52,11 @@ class _NavigationbarState extends State<NavBar> {
     audioPlayer.dispose();
     super.dispose();
   }
+  String formatDuration(Duration d){
+    final min=d.inMinutes.remainder(60);
+    final sec=d.inSeconds.remainder(60);
+    return "${min.toString().padLeft(2,'0')}:${sec.toString().padLeft(2,'0')}";
+  }
   Widget miniPlayer(){
     return AnimatedContainer(
         duration: const Duration(milliseconds: 500),
@@ -61,29 +68,7 @@ class _NavigationbarState extends State<NavBar> {
           onTap: (){
             // Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerWidget()));
             showModalBottomSheet<void>(context: context, isScrollControlled:true,backgroundColor: Colors.black,builder: (BuildContext context) {
-              return MaterialApp(
-                debugShowCheckedModeBanner: false,
-                home: Scaffold(
-                  appBar: AppBar(
-                    flexibleSpace:SafeArea(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 50),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            BackButton(color: Colors.white,onPressed: (){Navigator.pop(context);},),
-                            IconButton(onPressed: (){}, icon: Icon(Icons.menu,color: Colors.white,)),
-                          ],
-                        ),
-                      ),
-                    ),
-                    backgroundColor: Colors.black,
-                    toolbarHeight: 100,
-                  ),
-                  body: AudioPlayerWidget(),
-                ),
-              );
-                // AudioPlayerWidget();
+               return AudioPlayerWidget();
             });
             },
           child:

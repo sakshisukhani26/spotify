@@ -1,24 +1,8 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:spotify/Widgets/UiHelper.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-            // title: Text('Audio Player')
-        ),
-        body: Center(
-          child: AudioPlayerWidget(),
-        ),
-      ),
-    );
-  }
-}
 
 class AudioPlayerWidget extends StatefulWidget {
   @override
@@ -117,13 +101,16 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
     return Scaffold(
       // appBar: AppBar(
       //  flexibleSpace:SafeArea(
-      //    child: Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //       children: [
-      //         BackButton(color: Colors.white,),
-      //         IconButton(onPressed: (){}, icon: Icon(Icons.menu,color: Colors.white,)),
-      //       ],
-      //     ),
+      //    child: Padding(
+      //      padding: const EdgeInsets.symmetric(vertical: 50),
+      //      child: Row(
+      //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //         children: [
+      //           BackButton(color: Colors.white,onPressed: (){Navigator.pop(context);},),
+      //           IconButton(onPressed: (){}, icon: Icon(Icons.menu,color: Colors.white,)),
+      //         ],
+      //       ),
+      //    ),
       //  ),
       //   backgroundColor: Colors.black,
       //   toolbarHeight: 50,
@@ -140,6 +127,14 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
             padding: const EdgeInsets.symmetric(vertical: 50,horizontal: 20),
             child: Column(
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    UiHelper.iconBtn(30,callback: (){Navigator.pop(context);},icondata: Icons.keyboard_arrow_down_sharp,  color: Colors.white),
+                    UiHelper.iconBtn(25,icondata: Icons.menu,  color: Colors.white),
+                  ],
+                ),
+                SizedBox(height: 20,),
                 ClipRRect(borderRadius: BorderRadius.circular(20),
                   child: Image.network("https://i.scdn.co/image/ab67616d0000b273ba5db46f4b838ef6027e6f96",width: double.infinity,height: 350,fit: BoxFit.cover,),
                 ),
@@ -147,13 +142,8 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Tu hi tu",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 30),),
-                    IconButton(
-                      icon:Icon(Icons.add_circle_outline_outlined,color:Colors.white,size: 30),
-                      onPressed: () async{
-                        // audioPlayer.setPlaybackRate();
-                      },
-                    ),
+                    UiHelper.customText("Tu hi tu",color: Colors.white,fontweight: FontWeight.bold,fontsize: 30,),
+                    UiHelper.iconBtn(30,icondata: Icons.add_circle_outline_outlined,  color: Colors.white),
                   ],
                 ),
                 Slider(
@@ -172,8 +162,8 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(formatDuration(position),style: TextStyle(color: Colors.white),),
-                      Text(formatDuration(duration-position),style: TextStyle(color: Colors.white)),
+                      UiHelper.customText(formatDuration(position),color: Colors.white),
+                      UiHelper.customText(formatDuration(duration-position),color: Colors.white),
                     ],
                   ),
                 ),
@@ -181,25 +171,41 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    IconButton(
-                      icon:Icon(Icons.repeat,color: color,size: 30),
-                      onPressed: () async{
-                        if(isRepeat==false){
-                          audioPlayer.setReleaseMode(ReleaseMode.loop);
-                          setState(() {
-                            isRepeat=true;
-                            color=Colors.green;
-                          });
-                        }
-                        else if(isRepeat==true)
-                        {
-                          setState(() {
-                            isRepeat=false;
-                            color=Colors.white;
-                          });
-                        }
-                      },
-                    ),
+                    UiHelper.iconBtn(30,icondata: Icons.repeat,  color: color,callback: () async{
+                      if(isRepeat==false){
+                        audioPlayer.setReleaseMode(ReleaseMode.loop);
+                        setState(() {
+                          isRepeat=true;
+                          color=Colors.green;
+                        });
+                      }
+                      else if(isRepeat==true)
+                      {
+                        setState(() {
+                          isRepeat=false;
+                          color=Colors.white;
+                        });
+                      }
+                    },),
+                    // IconButton(
+                    //   icon:Icon(Icons.repeat,color: color,size: 30),
+                    //   onPressed: () async{
+                    //     if(isRepeat==false){
+                    //       audioPlayer.setReleaseMode(ReleaseMode.loop);
+                    //       setState(() {
+                    //         isRepeat=true;
+                    //         color=Colors.green;
+                    //       });
+                    //     }
+                    //     else if(isRepeat==true)
+                    //     {
+                    //       setState(() {
+                    //         isRepeat=false;
+                    //         color=Colors.white;
+                    //       });
+                    //     }
+                    //   },
+                    // ),
                     IconButton(
                         icon:Icon(Icons.skip_previous,color:Colors.white,size: 40),
                         onPressed: () async{

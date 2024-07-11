@@ -58,13 +58,13 @@ class _HomeState extends State<Home> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      IconButton(onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerWidget()));
-                      }, icon: Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),)
-                      // Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
-                      ,SizedBox(width: 20,),
-                      Image.network("https://i.scdn.co/image/ab67616d0000b2735c2e8fa840241ce6adf33a35",height: 150,width: 120,),
+                      // IconButton(onPressed: (){
+                      //   Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerWidget()));
+                      // }, icon: Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),)
+                      Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
                       SizedBox(width: 20,),
+                      // Image.network("https://i.scdn.co/image/ab67616d0000b2735c2e8fa840241ce6adf33a35",height: 150,width: 120,),
+                      // SizedBox(width: 20,),
                       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
                       SizedBox(width:20,),
                       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
@@ -91,7 +91,7 @@ class _HomeState extends State<Home> {
                       SizedBox(width: 20,),
                       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
                       SizedBox(width: 20,),
-                      Image.network("https://https://i.scdn.co/image/ab67616d0000b2735c2e8fa840241ce6adf33a35",height: 150,width: 120,),
+                      // Image.network("https://https://i.scdn.co/image/ab67616d0000b2735c2e8fa840241ce6adf33a35",height: 150,width: 120,),
                     ],
                   ),
                 ),
@@ -111,7 +111,7 @@ class _HomeState extends State<Home> {
                       SizedBox(width: 20,),
                       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
                       SizedBox(width: 20,),
-                      Image.network("https://https://i.scdn.co/image/ab67616d0000b2735c2e8fa840241ce6adf33a35",height: 150,width: 120,),
+                      // Image.network("https://https://i.scdn.co/image/ab67616d0000b2735c2e8fa840241ce6adf33a35",height: 150,width: 120,),
                     ],
                   ),
                 ),
@@ -131,7 +131,7 @@ class _HomeState extends State<Home> {
                       SizedBox(width: 20,),
                       Image.network("https://i.scdn.co/image/ab67616d0000b273459c4f1a89716e40ed5ff12b",height: 150,width: 120,),
                       SizedBox(width: 20,),
-                      Image.network("https://https://i.scdn.co/image/ab67616d0000b2735c2e8fa840241ce6adf33a35",height: 150,width: 120,),
+                      // Image.network("https://https://i.scdn.co/image/ab67616d0000b2735c2e8fa840241ce6adf33a35",height: 150,width: 120,),
                     ],
                   ),
                 ),
