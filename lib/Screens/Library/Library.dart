@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:spotify/Screens/Library/Controllers/libraryController.dart';
 import 'package:spotify/Widgets/UiHelper.dart';
@@ -35,9 +36,10 @@ class _LibraryState extends State<Library> {
                             color: Colors.white,
                             fontsize: 25,
                             fontweight: FontWeight.bold),
-                        SizedBox(
-                          width: 70,
-                        ),
+                        // SizedBox(
+                        //   width: 100,
+                        // ),
+                        Spacer(),
                         Row(
                           children: [
                             UiHelper.iconBtn(

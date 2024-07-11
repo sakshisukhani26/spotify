@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:spotify/Screens/Signup/Controllers/signupController.dart';
 import 'package:spotify/Widgets/UiHelper.dart';
 import 'package:intl/intl.dart';
@@ -39,7 +40,7 @@ class _SigninState extends State<Signin> {
                       UiHelper.customText("Spotify",color: Colors.white,fontsize: 40),
                     ],
               ),
-              SizedBox(height: 50,),
+              SizedBox(height: 50.h,),
               UiHelper.customTextField(emailController, "enter your email", icondata:Icons.email,focuscolor:Colors.grey,borderradius: 10),
               SizedBox(height: 30,),
               UiHelper.customTextField(nameController, "enter your name", icondata:Icons.person,focuscolor:Colors.grey,borderradius: 10),
