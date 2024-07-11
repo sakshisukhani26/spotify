@@ -108,6 +108,7 @@ class UiHelper {
       FontWeight? fontweight,
       TextAlign? align}) {
     return Text(
+      overflow: TextOverflow.ellipsis,
       text,
       style:
           TextStyle(fontSize: fontsize, color: color, fontWeight: fontweight),

@@ -15,19 +15,48 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.center,
-              colors:
-            [Color(0xff7f4053),Colors.black38],
-            )
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        toolbarHeight: 150.0, //set your height
+        flexibleSpace: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+            child: Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  UiHelper.customText("Good Morning!",
+                      color: Colors.white,
+                      fontsize: 30,
+                      fontweight: FontWeight.bold),
+                  SizedBox(height: 10,),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Search',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      prefixIcon: Icon(Icons.search),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
+      ),
+      body: Container(
+        // decoration: const BoxDecoration(
+        //     gradient: LinearGradient(
+        //       begin: Alignment.topLeft,
+        //       end: Alignment.center,
+        //       colors:
+        //     [Color(0xff7f4053),Colors.black38],
+        //     )
+        // ),
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 60,horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -43,16 +72,16 @@ class _HomeState extends State<Home> {
                 //   ],
                 // ),
                 // TopBar(),
-                UiHelper.customText("Good Morning",color: Colors.white,fontsize: 30),
-                SizedBox(height: 10,),
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Search',
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                    prefixIcon: Icon(Icons.search),
-                  ),
-                ),
-                SizedBox(height: 30,),
+                // UiHelper.customText("Good Morning",color: Colors.white,fontsize: 30),
+                // SizedBox(height: 10,),
+                // TextField(
+                //   decoration: InputDecoration(
+                //     labelText: 'Search',
+                //     border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                //     prefixIcon: Icon(Icons.search),
+                //   ),
+                // ),
+                // SizedBox(height: 30,),
                 UiHelper.customText("Top Artist", color:Colors.white,fontsize:  20),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
