@@ -30,6 +30,6 @@ class SignupController{
       initialDate: DateTime.now(),
     );
     if (pickedDate == null) return;
-    dateController!.text = DateFormat('yyyy-MM-dd').format(pickedDate);
+    dateController!.text = DateFormat('dd-MM-yyyy').format(pickedDate);
   }
 }

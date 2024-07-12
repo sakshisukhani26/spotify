@@ -3,7 +3,6 @@ import 'package:spotify/Screens/Signup/Controllers/signupController.dart';
 import 'package:spotify/Widgets/UiHelper.dart';
 import 'package:intl/intl.dart';
 import 'dart:developer';
-
 import 'package:spotify/Screens/Login/login.dart';
 
 class Signin extends StatefulWidget {
@@ -17,10 +16,11 @@ class Signin extends StatefulWidget {
 }
 
 class _SigninState extends State<Signin> {
+  var formatter = DateFormat('yyyy-MM-dd').format(DateTime.now());
   TextEditingController emailController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController pwdController = TextEditingController();
-  TextEditingController dateController = TextEditingController();
+  TextEditingController dateController = TextEditingController(text:DateFormat('dd-MM-yyyy').format(DateTime.now()));
   bool passwordVisible=true;
   final format= DateFormat('yyy-mm-dd');
   DateTime date = DateTime.now();
