@@ -15,7 +15,7 @@ class LoginController{
       SharedPreferences prefs=await SharedPreferences.getInstance();
       prefs.setBool("islogin", true);
       log("Data Added");
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>NavBar()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>NavBar()));
     }
   }
 }

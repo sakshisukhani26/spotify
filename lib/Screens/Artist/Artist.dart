@@ -221,7 +221,7 @@ class MyDelegate extends SliverPersistentHeaderDelegate {
       fit: StackFit.expand,
       children: [
         //how top bar will change while scrolling the screen
-        Flexible(
+        Container(
           // flex: 1,
           child: Stack(
             children: [
@@ -285,7 +285,6 @@ class MyDelegate extends SliverPersistentHeaderDelegate {
                       ),
                     ),
                   ),
-
                   Opacity(
                     opacity: max(1 - shrinkPercentage * 6, 0),
                     // opacity: max(1 - shrinkPercentage * 6, 0),

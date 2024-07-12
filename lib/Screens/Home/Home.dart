@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:spotify/Widgets/UiHelper.dart';
 
 import '../Play/Player.dart';
@@ -17,7 +18,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        toolbarHeight: 150.0, //set your height
+        toolbarHeight: 150.0.h, //set your height
         flexibleSpace: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:spotify/Screens/Library/Controllers/libraryController.dart';
@@ -57,7 +58,7 @@ class _LibraryState extends State<Library> {
                                             Colors.white.withOpacity(0.9),
                                             title: Text("Create Playlist"),
                                             content: Container(
-                                              height: 150,
+                                              height: 150.h,
                                               child: Column(
                                                 children: [
                                                   TextField(
@@ -69,10 +70,10 @@ class _LibraryState extends State<Library> {
                                                     ),
                                                   ),
                                                   SizedBox(
-                                                    height: 20,
+                                                    height: 20.h,
                                                   ),
                                                   SizedBox(
-                                                    height: 50,
+                                                    height: 50.h,
                                                     child: UiHelper.customButton("Create",
                                                         bgcolor: Colors.black,
                                                         forecolor:
@@ -101,8 +102,8 @@ class _LibraryState extends State<Library> {
                         Row(
                           children: [
                             UiHelper.customButton("Playlist",
-                                height: 35,
-                                width: 90,
+                                height: 35.h,
+                                width: 90.w,
                                 fontsize: 12,
                                 fontweight: FontWeight.bold,
                                 borderradius: 25,
@@ -111,11 +112,11 @@ class _LibraryState extends State<Library> {
                                 side: 1.0,
                                 sidecolor: Colors.white,callback: (){Navigator.push(context,MaterialPageRoute(builder: (context)=>Artist()));}),
                             SizedBox(
-                              width: 10,
+                              width: 10.w,
                             ),
                             UiHelper.customButton("Artist",
-                                height: 35,
-                                width: 80,
+                                height: 35.h,
+                                width: 80.w,
                                 fontsize: 12,
                                 fontweight: FontWeight.bold,
                                 borderradius: 25,
@@ -124,11 +125,11 @@ class _LibraryState extends State<Library> {
                                 side: 1.0,
                                 sidecolor: Colors.white,callback: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>Artist()));}),
                             SizedBox(
-                              width: 10,
+                              width: 10.w,
                             ),
                             UiHelper.customButton("Albums",
-                                height: 35,
-                                width: 90,
+                                height: 35.h,
+                                width: 90.w,
                                 fontsize: 12,
                                 fontweight: FontWeight.bold,
                                 borderradius: 25,
@@ -160,7 +161,7 @@ class _LibraryState extends State<Library> {
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Row(
                       children: [
@@ -169,8 +170,8 @@ class _LibraryState extends State<Library> {
                             image: true,
                             imagePath:
                             "https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg",
-                            height: 70,
-                            width: 70),
+                            height: 70.h,
+                            width: 70.w),
                         UiHelper.customTextButton("Liked Songs",
                             color: Colors.white,
                             fontweight: FontWeight.bold,
@@ -188,8 +189,8 @@ class _LibraryState extends State<Library> {
                                   image: true,
                                   imagePath:
                                   "https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg",
-                                  height: 70,
-                                  width: 70),
+                                  height: 70.h,
+                                  width: 70.w),
                               UiHelper.customTextButton(controller
                                   .playlists.value[index].playlistname!,
                                   color: Colors.white,

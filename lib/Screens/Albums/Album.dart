@@ -1,10 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../Widgets/UiHelper.dart';
 import '../Albums/Album.dart';
+import '../Artist/Artist.dart';
 
 double _appTopBarHeight = 40;
 String AlbumName = 'Arijit Singh';
@@ -90,80 +92,200 @@ class Album extends StatelessWidget {
               pinned: true,
             ),
             SliverList(
-              delegate: SliverChildBuilderDelegate(
-                    (_, index) => Padding(
-                  padding: const EdgeInsets.only(left: 15, top: 10),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20,top: 40,right: 20),
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return Column(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                          left:borderside,
-                                          bottom: borderside,
-                                          right: borderside,
+              delegate:SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                    child: Row(
+                      children: [
+                        UiHelper.customButton("About",
+                            fontsize: 15,
+                            fontweight: FontWeight.bold,
+                            borderradius: 25,
+                            bgcolor: Colors.transparent,
+                            forecolor: Colors.white,
+                            side: 1.0,
+                            sidecolor: Colors.white, callback: () {
+                              showModalBottomSheet<void>(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return Container(
+                                      height: 350,
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                              "https://i.scdn.co/image/ab6761610000e5eb0261696c5df3be99da6ed3f3"),
+                                          fit: BoxFit.cover,
                                         ),
-                                        borderRadius: BorderRadius.circular(5)
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        ExpansionTile(
-                                          leading: Image.network(
-                                            "https://m.media-amazon.com/images/I/610FLv2T1QL._AC_UF1000,1000_QL80_.jpg",
-                                            height: 70,
-                                            width: 70,
-                                            fit: BoxFit.fill,
-                                          ),
-                                          title: UiHelper.customText(
-                                              arrContent[index]["songname"].toString(), color:Colors.white, fontsize: 20),
-                                          childrenPadding: EdgeInsets.only(left: 40),
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(left: 40.0),
-                                              child: ListView.builder(
-                                                shrinkWrap: true,
-                                                itemBuilder: (context, index) {
-                                                  return ListTile(
-                                                    title: UiHelper.customText(
-                                                        arrContent[index]["songname"]
-                                                            .toString(),
-                                                        color: Colors.white,
-                                                        fontsize:15),
-                                                    subtitle: UiHelper.customText(
-                                                        "Arijit Singh", color:Colors.white, fontsize:15),
-                                                    trailing: IconButton(onPressed: (){
-                                                    }, icon: Icon(Icons.add_circle_outline)),
-                                                    onTap: () {},
-                                                  );
-                                                },
-                                                itemCount: arrContent.length,
-                                              ),
-                                            ),
-                                          ],
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(16.0),
+                                          topRight: Radius.circular(16.0),
                                         ),
-                                        SizedBox(height: 10,),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(height: 20,),
-                                ],
-                              );
-                            },
-                            itemCount: arrContent.length),
+                                      ),
+                                    );
+                                  });
+                            }),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        UiHelper.customButton("Artist",
+                            fontsize: 15,
+                            fontweight: FontWeight.bold,
+                            borderradius: 25,
+                            bgcolor: Colors.transparent,
+                            forecolor: Colors.white,
+                            side: 1.0,
+                            sidecolor: Colors.white,
+                            callback: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Artist()));
+                            }),
+                      ],
+                    ),
+                  );
+                },
+                childCount: 1, // SliverList displaying 20 items, each on a ListTile
+              ),
 
+            ),
+            SliverGrid(
+              delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+                    child: Container(
+                      alignment: Alignment.center,
+                      color: Colors.black,
+                      child: Column(
+                        children: [
+                          IconButton(onPressed: (){}, icon: Image.network("https://m.media-amazon.com/images/I/610FLv2T1QL._AC_UF1000,1000_QL80_.jpg")),
+                          // UiHelper.iconBtn(30,imagePath:  "https://m.media-amazon.com/images/I/610FLv2T1QL._AC_UF1000,1000_QL80_.jpg"),
+                          // Image.network(
+                          //     "https://m.media-amazon.com/images/I/610FLv2T1QL._AC_UF1000,1000_QL80_.jpg",
+                          //   ),
+                          UiHelper.customText(arrContent[index]["songname"].toString(),                         color: Colors.white, fontsize: 20),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-                childCount: 1,
+                    ),
+                  );
+                },
+                childCount: arrContent.length,
+              ),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                // mainAxisSpacing: 0.1,
+                crossAxisSpacing: 10,//for size of whole box
+                // childAspectRatio: 1.1,
               ),
             ),
+            // SliverList(
+            //   delegate: SliverChildBuilderDelegate(
+            //         (_, index) => Padding(
+            //       padding: const EdgeInsets.only(left: 15, top: 10),
+            //       child:
+            //       GridView.builder(
+            //         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            //         itemBuilder: (_, index) {
+            //           return Column(children: [Image.network(
+            //             "https://m.media-amazon.com/images/I/610FLv2T1QL._AC_UF1000,1000_QL80_.jpg",
+            //             height: 70,
+            //             width: 70,
+            //             fit: BoxFit.fill,
+            //           ),
+            //             UiHelper.customText(
+            //                 arrContent[index]["songname"].toString(),
+            //                 color: Colors.white, fontsize: 20),
+            //           ],);
+            //         },
+            //         itemCount: arrContent.length,
+            //       ),
+            //       // Column(
+            //       //   children: [
+            //       //     Padding(
+            //       //       padding: const EdgeInsets.only(left: 20,top: 40,right: 20),
+            //       //       child: ListView.builder(
+            //       //           shrinkWrap: true,
+            //       //           itemBuilder: (context, index) {
+            //       //             return Column(
+            //       //               children: [
+            //       //                 Container(
+            //       //                   decoration: BoxDecoration(
+            //       //                       border: Border(
+            //       //                         left:borderside,
+            //       //                         bottom: borderside,
+            //       //                         right: borderside,
+            //       //                       ),
+            //       //                       borderRadius: BorderRadius.circular(5)
+            //       //                   ),
+            //       //                   child: Column(
+            //       //                     children: [
+            //       //                       // GridView(
+            //       //                       //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            //       //                       //   children: <Widget>[
+            //       //                       //       Image.network(
+            //       //                       //           "https://m.media-amazon.com/images/I/610FLv2T1QL._AC_UF1000,1000_QL80_.jpg",
+            //       //                       //           height: 70,
+            //       //                       //           width: 70,
+            //       //                       //           fit: BoxFit.fill,
+            //       //                       //         ),
+            //       //                       //           UiHelper.customText(
+            //       //                       //             arrContent[index]["songname"].toString(), color:Colors.white, fontsize: 20),
+            //       //                       //   ],
+            //       //                       // ),
+            //       //                       ExpansionTile(
+            //       //                         leading: Image.network(
+            //       //                           "https://m.media-amazon.com/images/I/610FLv2T1QL._AC_UF1000,1000_QL80_.jpg",
+            //       //                           height: 70,
+            //       //                           width: 70,
+            //       //                           fit: BoxFit.fill,
+            //       //                         ),
+            //       //                         title: UiHelper.customText(
+            //       //                             arrContent[index]["songname"].toString(), color:Colors.white, fontsize: 20),
+            //       //                         childrenPadding: EdgeInsets.only(left: 40),
+            //       //                         children: [
+            //       //                           Padding(
+            //       //                             padding: const EdgeInsets.only(left: 40.0),
+            //       //                             child: ListView.builder(
+            //       //                               shrinkWrap: true,
+            //       //                               itemBuilder: (context, index) {
+            //       //                                 return ListTile(
+            //       //                                   title: UiHelper.customText(
+            //       //                                       arrContent[index]["songname"]
+            //       //                                           .toString(),
+            //       //                                       color: Colors.white,
+            //       //                                       fontsize:15),
+            //       //                                   subtitle: UiHelper.customText(
+            //       //                                       "Arijit Singh", color:Colors.white, fontsize:15),
+            //       //                                   trailing: IconButton(onPressed: (){
+            //       //                                   }, icon: Icon(Icons.add_circle_outline)),
+            //       //                                   onTap: () {},
+            //       //                                 );
+            //       //                               },
+            //       //                               itemCount: arrContent.length,
+            //       //                             ),
+            //       //                           ),
+            //       //                         ],
+            //       //                       ),
+            //       //                       SizedBox(height: 10,),
+            //       //                     ],
+            //       //                   ),
+            //       //                 ),
+            //       //                 SizedBox(height: 20,),
+            //       //               ],
+            //       //             );
+            //       //           },
+            //       //           itemCount: arrContent.length),
+            //       //
+            //       //     ),
+            //       //   ],
+            //       // ),
+            //     ),
+            //     childCount: 1,
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -183,12 +305,13 @@ class MyDelegate extends SliverPersistentHeaderDelegate {
       children: [
 
         //how top bar will change while scrolling the screen
-        Flexible(
+        Container(
           // flex: 1,
-          child: Stack(
+          child:
+          Stack(
             children: [
               Container(
-                color: Colors.green,
+                color: Colors.black,
                 height: 40,
               ),
               Opacity(
@@ -200,7 +323,7 @@ class MyDelegate extends SliverPersistentHeaderDelegate {
                         fit: BoxFit.fitWidth,
                         alignment: FractionalOffset.topCenter,
                         image: NetworkImage(
-                            'https://m.media-amazon.com/images/I/610FLv2T1QL._AC_UF1000,1000_QL80_.jpg'),
+                            'https://m.media-amazon.com/images/I/610FLv2T1QL._AC_UF1000,1000_QL80_.jpg',),
                       )),
                 ),
               ),
