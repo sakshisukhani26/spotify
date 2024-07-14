@@ -5,6 +5,7 @@ import 'package:spotify/Screens/Albums/Album.dart';
 import 'package:spotify/Screens/Artist/Artist.dart';
 import 'package:spotify/Screens/Home/Home.dart';
 import 'package:spotify/Screens/Library/Library.dart';
+import 'package:spotify/Screens/Play/Blocs/PlayerBloc.dart';
 import 'package:spotify/Screens/Play/Player.dart';
 import 'package:spotify/Screens/Settings/Settings.dart';
 import 'package:spotify/Screens/Firstscreen/firstscreen.dart';
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (_)=>SignUpBloc()),
-          BlocProvider(create: (_)=>LoginBloc())
+          BlocProvider(create: (_)=>LoginBloc()),
+          BlocProvider(create: (_)=>PlayerBloc())
         ],
         child: MaterialApp(
           title: 'Flutter Demo',
@@ -40,7 +42,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home:Signin(),
+          home:Login(),
           debugShowCheckedModeBanner: false,
         ),
       ),
