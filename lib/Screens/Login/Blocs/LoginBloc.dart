@@ -1,12 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../Navbar/navigationBar.dart';
 import '../../Utils/BaseUrls.dart';
 import '../Models/LoginModel.dart';
 import 'LoginEvents.dart';
@@ -24,11 +20,15 @@ class LoginBloc extends Bloc<LoginEvents,LoginStates>{
         })
     );
     if(response.statusCode==200){
+      SharedPreferences prefs=await SharedPreferences.getInstance();
       Map<String,dynamic> responseData=jsonDecode(response.body);
       log(responseData.toString());
+      String token=responseData['token'];
+      log(token);
+
+      prefs.setString("token", token);
       LoginModel loginModel=LoginModel.fromJson(responseData);
       emit(LoginLoadedState(loginModel: loginModel));
-      SharedPreferences prefs=await SharedPreferences.getInstance();
       prefs.setBool("islogin", true);
     }
     else{
