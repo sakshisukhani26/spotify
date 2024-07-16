@@ -24,9 +24,10 @@ class LoginBloc extends Bloc<LoginEvents,LoginStates>{
       Map<String,dynamic> responseData=jsonDecode(response.body);
       log(responseData.toString());
       String token=responseData['token'];
-      log(token);
+      String userid=responseData['response']['_id'];
 
       prefs.setString("token", token);
+      prefs.setString("userid", userid);
       LoginModel loginModel=LoginModel.fromJson(responseData);
       emit(LoginLoadedState(loginModel: loginModel));
       prefs.setBool("islogin", true);
