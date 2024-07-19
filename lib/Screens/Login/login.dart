@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify/Screens/Login/Blocs/LoginBloc.dart';
@@ -8,6 +9,8 @@ import 'package:spotify/Screens/Navbar/navigationBar.dart';
 import 'package:spotify/Widgets/UiHelper.dart';
 import 'package:intl/intl.dart';
 
+import '../../try.dart';
+import '../Home/Home.dart';
 import '../Signup/signup.dart';
 
 class Login extends StatefulWidget {
@@ -74,7 +77,7 @@ class _LoginState extends State<Login> {
                       height:60,
                       width:350,
                       child:
-                      UiHelper.customButton("Login", fontsize: 25,  borderradius: 25, bgcolor:Colors.greenAccent.shade400, forecolor:Colors.black,callback: (){ LoginController.login(emailController.text.toString(), pwdController.text.toString(),context);}),
+                      UiHelper.customButton("Login", fontsize: 25,  borderradius: 25, bgcolor:Colors.greenAccent.shade400, forecolor:Colors.black,callback: (){ signIn(emailController.text.toString(),pwdController.text.toString());}),
                       // ElevatedButton(onPressed:(){ login(emailController.text.toString(), pwdController.text.toString());} , child: Text("Login",style: TextStyle(fontSize: 25),),
                       //   style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
                       //       borderRadius: BorderRadius.circular(25)
@@ -111,6 +114,23 @@ class _LoginState extends State<Login> {
 
       )
     );
+  }
+  signIn(String email,String password)async{
+    if(email=="" && password==""){
+      return UiHelper.CustomAlertBox(context,"Enter Required Fields");
+    }
+    else{
+      UserCredential? usercredential;
+      try{
+        usercredential=await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
+        });
+      }
+      on FirebaseAuthException catch(ex){
+        return UiHelper.CustomAlertBox(context,ex.code.toString());
+      }
+
+    }
   }
 }
 

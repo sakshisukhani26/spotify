@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,8 +19,13 @@ import 'Screens/Login/Blocs/LoginBloc.dart';
 import 'Screens/Login/login.dart';
 import 'Screens/Navbar/navigationBar.dart';
 import 'Screens/Signup/Blocs/SignupBloc.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp()  );
 }
 
@@ -42,7 +48,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home:SplashScreen2(),
+          home:Login(),
           debugShowCheckedModeBanner: false,
         ),
       ),
