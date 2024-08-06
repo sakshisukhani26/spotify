@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:spotify/Screens/Albums/Album.dart';
 import 'package:spotify/Screens/Artist/Artist.dart';
+import 'package:spotify/Screens/Home/Cubits/HomeCubits.dart';
 import 'package:spotify/Screens/Home/Home.dart';
 import 'package:spotify/Screens/Library/Library.dart';
 import 'package:spotify/Screens/Play/Cubits/PlayerCubits.dart';
@@ -38,7 +39,8 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (_)=>SignUpBloc()),
           BlocProvider(create: (_)=>LoginBloc()),
-          BlocProvider(create: (_)=>PlayerCubit()..getMusic())
+          BlocProvider(create: (_)=>PlayerCubit()..getMusic()),
+          BlocProvider(create: (_)=>HomeCubit()..getArtist())
         ],
         child: MaterialApp(
           title: 'Flutter Demo',
@@ -46,7 +48,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home:Trial(),
+          home:SplashScreen2(),
           debugShowCheckedModeBanner: false,
         ),
       ),

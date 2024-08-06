@@ -123,7 +123,7 @@ class _LoginState extends State<Login> {
       UserCredential? usercredential;
       try{
         usercredential=await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>NavBar()));
         });
       }
       on FirebaseAuthException catch(ex){
@@ -133,4 +133,5 @@ class _LoginState extends State<Login> {
     }
   }
 }
+
 

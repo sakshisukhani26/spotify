@@ -14,7 +14,7 @@ class PlayerCubit extends Cubit<PlayerStates>{
     SharedPreferences prefs=await SharedPreferences.getInstance();
     String? token=prefs.getString("token");
     String? userid=prefs.getString("userid");
-    log(userid.toString());
+    log("Player "+token.toString());
     final response=await http.get(Uri.parse("https://spotify-api-gold.vercel.app/spotify/getmusics?user=$userid"),
         headers: {"Content-Type": 'application/json', "Authorization": token!},
     );

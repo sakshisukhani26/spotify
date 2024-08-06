@@ -25,9 +25,9 @@ class LoginBloc extends Bloc<LoginEvents,LoginStates>{
       log(responseData.toString());
       String token=responseData['token'];
       String userid=responseData['response']['_id'];
-
       prefs.setString("token", token);
       prefs.setString("userid", userid);
+      log("login"+token.toString());
       LoginModel loginModel=LoginModel.fromJson(responseData);
       emit(LoginLoadedState(loginModel: loginModel));
       prefs.setBool("islogin", true);
