@@ -32,6 +32,5 @@ class PlayerCubit extends Cubit<PlayerStates>{
     else {
       emit(PlayerErrorStates(error: response.statusCode.toString()));
     }
-}
-
+  }
 }

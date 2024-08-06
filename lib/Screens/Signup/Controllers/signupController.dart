@@ -19,7 +19,7 @@ class SignupController{
         return UiHelper.CustomAlertBox(context, "Enter Valid Email");
       }
       else {
-        context.read<SignUpBloc>().signUp(email, password, username);
+        context.read<SignUpBloc>().signUp(email, password, username,date);
       }
     }
   }

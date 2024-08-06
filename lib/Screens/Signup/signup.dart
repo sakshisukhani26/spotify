@@ -176,7 +176,7 @@ class _SigninState extends State<Signin> {
                         //   SignupController.signup(context,emailController.text.toString(), pwdController.text.toString(),nameController.text.toString(),dateController.text.toString());
                         // }),
                         UiHelper.customOutlinebtn(25, 1.0, "Create Account", 20, FontWeight.bold, Colors.green, Colors.green,callback: (){
-                          signUp(emailController.text.toString(), pwdController.text.toString(),nameController.text.toString(),dateController.text.toString());
+                          SignupController.signup(context,emailController.text.toString(), pwdController.text.toString(),nameController.text.toString(),dateController.text.toString());
                         }),
                         // OutlinedButton(onPressed: (){
                         //   signup(emailController.text.toString(), pwdController.text.toString(),nameController.text.toString(),dateController.text.toString());
@@ -243,23 +243,23 @@ class _SigninState extends State<Signin> {
   //   if (pickedDate == null) return;
   //   dateController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
   // }
-  signUp(String email, String password,String username,String DOB) async {
-    if (email == "" && password == ""&&username == "" && DOB == "") {
-      return UiHelper.CustomAlertBox(context,"Enter Required Field's");
-    } else {
-      UserCredential? userCredential;
-      try {
-        userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password)
-            .then((value) {
-          return
-          Navigator.push(context,MaterialPageRoute(builder: (context)=>Login()));
-        });
-      } on FirebaseAuthException catch (ex) {
-        return UiHelper.CustomAlertBox( context,ex.code.toString());
-      }
-    }
-  }
+  // signUp(String email, String password,String username,String DOB) async {
+  //   if (email == "" && password == ""&&username == "" && DOB == "") {
+  //     return UiHelper.CustomAlertBox(context,"Enter Required Field's");
+  //   } else {
+  //     UserCredential? userCredential;
+  //     try {
+  //       userCredential = await FirebaseAuth.instance
+  //         .createUserWithEmailAndPassword(email: email, password: password)
+  //           .then((value) {
+  //         return
+  //         Navigator.push(context,MaterialPageRoute(builder: (context)=>Login()));
+  //       });
+  //     } on FirebaseAuthException catch (ex) {
+  //       return UiHelper.CustomAlertBox( context,ex.code.toString());
+  //     }
+  //   }
+  // }
 }
 extension StringExtensions on String {
   String capitalise() {

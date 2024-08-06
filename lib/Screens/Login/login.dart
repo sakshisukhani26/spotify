@@ -77,7 +77,7 @@ class _LoginState extends State<Login> {
                       height:60,
                       width:350,
                       child:
-                      UiHelper.customButton("Login", fontsize: 25,  borderradius: 25, bgcolor:Colors.greenAccent.shade400, forecolor:Colors.black,callback: (){ signIn(emailController.text.toString(),pwdController.text.toString());}),
+                      UiHelper.customButton("Login", fontsize: 25,  borderradius: 25, bgcolor:Colors.greenAccent.shade400, forecolor:Colors.black,callback: (){ LoginController.login(emailController.text.toString(), pwdController.text.toString(), context);}),
                       // ElevatedButton(onPressed:(){ login(emailController.text.toString(), pwdController.text.toString());} , child: Text("Login",style: TextStyle(fontSize: 25),),
                       //   style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
                       //       borderRadius: BorderRadius.circular(25)
@@ -115,23 +115,23 @@ class _LoginState extends State<Login> {
       )
     );
   }
-  signIn(String email,String password)async{
-    if(email=="" && password==""){
-      return UiHelper.CustomAlertBox(context,"Enter Required Fields");
-    }
-    else{
-      UserCredential? usercredential;
-      try{
-        usercredential=await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>NavBar()));
-        });
-      }
-      on FirebaseAuthException catch(ex){
-        return UiHelper.CustomAlertBox(context,ex.code.toString());
-      }
-
-    }
-  }
+  // signIn(String email,String password)async{
+  //   if(email=="" && password==""){
+  //     return UiHelper.CustomAlertBox(context,"Enter Required Fields");
+  //   }
+  //   else{
+  //     UserCredential? usercredential;
+  //     try{
+  //       usercredential=await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value){
+  //         Navigator.push(context, MaterialPageRoute(builder: (context)=>NavBar()));
+  //       });
+  //     }
+  //     on FirebaseAuthException catch(ex){
+  //       return UiHelper.CustomAlertBox(context,ex.code.toString());
+  //     }
+  //
+  //   }
+  // }
 }
 
 

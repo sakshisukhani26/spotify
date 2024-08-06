@@ -19,6 +19,7 @@ class LoginBloc extends Bloc<LoginEvents,LoginStates>{
           "password":password,
         })
     );
+    log("hi");
     if(response.statusCode==200){
       SharedPreferences prefs=await SharedPreferences.getInstance();
       Map<String,dynamic> responseData=jsonDecode(response.body);

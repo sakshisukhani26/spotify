@@ -1,36 +1,49 @@
 class SignupModel {
   String? message;
-  Data? data;
+  Response? response;
 
-  SignupModel({this.message, this.data});
+  SignupModel({this.message, this.response});
 
   SignupModel.fromJson(Map<String, dynamic> json) {
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    response = json['response'] != null
+        ? new Response.fromJson(json['response'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['message'] = this.message;
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
+    if (this.response != null) {
+      data['response'] = this.response!.toJson();
     }
     return data;
   }
 }
 
-class Data {
+class Response {
   String? email;
   String? password;
+  String? dob;
+  String? createdat;
   String? username;
   String? sId;
   int? iV;
 
-  Data({this.email, this.password, this.username, this.sId, this.iV});
+  Response(
+      {this.email,
+        this.password,
+        this.dob,
+        this.createdat,
+        this.username,
+        this.sId,
+        this.iV});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  Response.fromJson(Map<String, dynamic> json) {
     email = json['email'];
     password = json['password'];
+    dob = json['dob'];
+    createdat = json['createdat'];
     username = json['username'];
     sId = json['_id'];
     iV = json['__v'];
@@ -40,6 +53,8 @@ class Data {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['email'] = this.email;
     data['password'] = this.password;
+    data['dob'] = this.dob;
+    data['createdat'] = this.createdat;
     data['username'] = this.username;
     data['_id'] = this.sId;
     data['__v'] = this.iV;
