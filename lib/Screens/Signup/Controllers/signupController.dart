@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:spotify/Screens/Login/login.dart';
 import 'package:spotify/Widgets/UiHelper.dart';
@@ -19,7 +21,8 @@ class SignupController{
         return UiHelper.CustomAlertBox(context, "Enter Valid Email");
       }
       else {
-        context.read<SignUpBloc>().signUp(email, password, username,date);
+        await context.read<SignUpBloc>().signUp(email, password, username,date);
+        log("success");
       }
     }
   }

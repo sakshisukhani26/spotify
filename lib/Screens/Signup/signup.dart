@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -14,10 +13,7 @@ import 'Blocs/SignupStates.dart';
 class Signin extends StatefulWidget {
   const Signin({super.key});
 
-
   @override
-
-
   State<Signin> createState() => _SigninState();
 }
 

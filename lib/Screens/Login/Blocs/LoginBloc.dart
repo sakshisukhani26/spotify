@@ -23,9 +23,10 @@ class LoginBloc extends Bloc<LoginEvents,LoginStates>{
     if(response.statusCode==200){
       SharedPreferences prefs=await SharedPreferences.getInstance();
       Map<String,dynamic> responseData=jsonDecode(response.body);
-      log(responseData.toString());
+      // log("response : "+responseData.toString());
+      // log("response id : "+ responseData['data']['_id']);
       String token=responseData['token'];
-      String userid=responseData['response']['_id'];
+      String userid=responseData['data']['_id'];
       prefs.setString("token", token);
       prefs.setString("userid", userid);
       log("login"+token.toString());

@@ -110,7 +110,7 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
           return Center(child: CircularProgressIndicator(),);
         }
         else if(state is PlayerErrorStates){
-          log(state.error.toString());
+          log("error : " + state.error.toString());
         }
         else if(state is PlayerLoadedState){
           return SingleChildScrollView(

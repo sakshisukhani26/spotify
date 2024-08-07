@@ -14,7 +14,7 @@ class LoginController{
       return UiHelper.CustomAlertBox(context, "Enter Required Field's");
     }
     else{
-      context.read<LoginBloc>().login(email, password);
+      await context.read<LoginBloc>().login(email, password);
     }
   }
 }
